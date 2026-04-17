@@ -49,6 +49,56 @@ Offer three modes:
 2. **Context Dump** — You paste everything you know; I fill gaps only
 3. **Best Guess** — I infer from minimal input and label all assumptions
 
+### Problem Framing Framework (from problem-statement)
+
+Every spec must start with a **user-centered problem statement**, not a feature wish list. Use this narrative structure:
+
+- **I am:** [Describe the persona experiencing the problem — 3-4 key characteristics]
+- **Trying to:** [Desired outcome the persona cares about]
+- **But:** [Barriers preventing the outcome]
+- **Because:** [Root cause — push past symptoms to underlying issues]
+- **Which makes me feel:** [Emotional impact — use real language, not marketing copy]
+
+**Anti-patterns to avoid:**
+- **Solution smuggling:** "The problem is we lack AI-powered analytics" → Reframe around the user outcome
+- **Business problem disguised as user problem:** "Our revenue is down" → Dig into why users churn
+- **Generic persona:** "Busy professionals" → Get specific: "Sales rep managing 50+ leads in spreadsheets"
+- **Symptom instead of root cause:** "Because the UI is confusing" → Ask "Why?" 5 times
+
+### Proto-Persona Framework (from proto-persona)
+
+Before writing features, define **who** you're building for with a proto-persona:
+
+- **Name:** Alliterative, memorable (e.g., "Manager Mike," "Startup Sarah")
+- **Bio & Demographics:** Age, location, career, context-relevant details
+- **Pains:** Specific frustrations (not "frustrated with tools" → "Spends 3 hrs/week copying data between tools")
+- **Goals:** Observable outcomes, not tasks
+- **Decision Authority:** Can they buy your solution? Budget limits?
+- **Decision Influencers:** Who shapes their choices?
+
+Mark assumptions with `[ASSUMPTION—VALIDATE]` tags. Proto-personas are hypotheses to validate, not facts.
+
+### Prioritization Framework (from prioritization-advisor)
+
+Choose the right prioritization method based on product stage:
+
+| Product Stage | Recommended Framework | Why |
+|--------------|----------------------|-----|
+| Pre-PMF | ICE or Value/Effort 2×2 | Speed > rigor when you don't know what works |
+| Early PMF, scaling | RICE (Reach × Impact × Confidence / Effort) | Data-driven when you have metrics |
+| Mature, optimizing | Kano or Opportunity Scoring | Separate basics from delight at scale |
+
+**Key principles:**
+- **RICE** = (Reach × Impact × Confidence) / Effort — best when usage data exists
+- **ICE** = Impact × Confidence × Ease — lightweight, good when data is thin
+- **Kano Model** — classify features as Basic (must-have), Performance (more=better), Delight (unexpected value)
+- **Value vs. Effort 2×2** — Quick Wins (high value, low effort) vs. Strategic Bets (high value, high effort)
+
+**Anti-patterns:**
+- Framework whiplash (switching every quarter) → Stick with one for 6-12 months
+- Treating scores as gospel → PM judgment overrides when strategic context demands
+- Solo PM scoring → Collaborative sessions with engineering and design
+
 ## Application
 
 ### Entry Mode (via workshop-facilitation protocol)

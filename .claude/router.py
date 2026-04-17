@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Skill Router - Match user intent to the best Skill.
-Supports dual-domain routing: dev/ and content/
+Supports three-domain routing: dev/, content/, and pm/
 """
 
 import argparse
@@ -111,6 +111,76 @@ SKILL_INDEX = [
         ],
         "domain": "content",
     },
+    # pm/ domain (product management decision gates)
+    {
+        "name": "pm/validation",
+        "triggers": [
+            "validate",
+            "validation",
+            "post-launch",
+            "metrics review",
+            "GO",
+            "PIVOT",
+            "KILL",
+            "验证",
+            "效果验证",
+            "指标复查",
+            "产品验证",
+            "上线后验证",
+            "go/no-go",
+            "7-day",
+            "30-day",
+        ],
+        "domain": "pm",
+    },
+    {
+        "name": "pm/content-strategy",
+        "triggers": [
+            "content strategy",
+            "内容策略",
+            "audience targeting",
+            "KPI definition",
+            "CG0",
+            "target audience",
+            "differentiation",
+            "差异化",
+            "目标受众",
+        ],
+        "domain": "pm",
+    },
+    {
+        "name": "pm/distribution-planner",
+        "triggers": [
+            "distribution",
+            "publishing",
+            "UTM",
+            "platform metadata",
+            "分发",
+            "发布计划",
+            "platform strategy",
+            "CG4",
+            "SEO",
+            "分发策略",
+        ],
+        "domain": "pm",
+    },
+    {
+        "name": "pm/content-validation",
+        "triggers": [
+            "content performance",
+            "content KPI",
+            "content review",
+            "ITERATE",
+            "REFRESH",
+            "RETIRE",
+            "内容验证",
+            "内容效果",
+            "CG5",
+            "post-publish review",
+            "内容指标",
+        ],
+        "domain": "pm",
+    },
 ]
 
 
@@ -138,7 +208,7 @@ def main() -> int:
     parser.add_argument("query", help="User intent description")
     parser.add_argument(
         "--domain",
-        choices=["dev", "content"],
+        choices=["dev", "content", "pm"],
         help="Restrict routing to a specific domain",
     )
     args = parser.parse_args()
@@ -146,7 +216,9 @@ def main() -> int:
     matches = route(args.query, args.domain)
     if not matches:
         print("⚠ No strong Skill match found.")
-        print("  Consider specifying a domain with --domain dev or --domain content.")
+        print(
+            "  Consider specifying a domain with --domain dev, --domain content, or --domain pm."
+        )
         print("  Or rephrase your query with more specific keywords.")
         return 1
 

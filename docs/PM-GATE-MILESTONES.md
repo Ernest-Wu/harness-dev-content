@@ -8,7 +8,7 @@
 
 ---
 
-## 当前里程碑: M3 — PM Gate 验证增强
+## 当前里程碑: M4 — PM Enrichment（已完成）
 
 ---
 
@@ -72,20 +72,20 @@
 ## M4: PM Enrichment（P3 — 从 pm-skills 注入决策框架）
 
 **目标**: 将 pm-skills 的 PM 决策框架注入到对应 Skill，创建新 Skill  
-**状态**: ⬜ 等待 M3  
+**状态**: ✅ 已完成  
 **前置条件**: M3 完成
 
 | # | 任务 | 修改文件 | 验收标准 | 状态 |
 |---|------|---------|---------|------|
-| 4.1 | product-spec-builder Key Concepts 注入 pm-skills 框架 | `.claude/skills/dev/product-spec-builder/SKILL.md` | 含 problem-statement + proto-persona + prioritization-advisor 框架摘要 | ⬜ |
-| 4.2 | design-brief-builder Key Concepts 注入 pm-skills 框架 | `.claude/skills/dev/design-brief-builder/SKILL.md` | 含 positioning-statement + user-story-mapping 框架摘要 | ⬜ |
-| 4.3 | dev-planner Key Concepts 注入 pm-skills 框架 | `.claude/skills/dev/dev-planner/SKILL.md` | 含 roadmap-planning + epic-hypothesis + lean-ux-canvas 框架摘要 | ⬜ |
-| 4.4 | 新建 pm/validation Skill | `.claude/skills/pm/validation/SKILL.md` + `exit-check.py` | G5 验证 Skill | ⬜ |
-| 4.5 | 新建 pm/content-strategy Skill | `.claude/skills/pm/content-strategy/SKILL.md` + `exit-check.py` | CG0 内容策略 Skill | ⬜ |
-| 4.6 | 新建 pm/distribution-planner Skill | `.claude/skills/pm/distribution-planner/SKILL.md` + `exit-check.py` | CG4 分发规划 Skill | ⬜ |
-| 4.7 | 新建 pm/content-validation Skill | `.claude/skills/pm/content-validation/SKILL.md` + `exit-check.py` | CG5 内容验证 Skill | ⬜ |
-| 4.8 | router.py 增加 pm/ 域路由 | `.claude/router.py` | 支持 `--domain pm` 过滤 | ⬜ |
-| 4.9 | check-harness.py 增加 PM 域检查 | `.claude/check-harness.py` | 三域健康检查 | ⬜ |
+| 4.1 | product-spec-builder Key Concepts 注入 pm-skills 框架 | `.claude/skills/dev/product-spec-builder/SKILL.md` | 含 problem-statement + proto-persona + prioritization-advisor 框架摘要 | ✅ |
+| 4.2 | design-brief-builder Key Concepts 注入 pm-skills 框架 | `.claude/skills/dev/design-brief-builder/SKILL.md` | 含 positioning-statement + user-story-mapping 框架摘要 | ✅ |
+| 4.3 | dev-planner Key Concepts 注入 pm-skills 框架 | `.claude/skills/dev/dev-planner/SKILL.md` | 含 roadmap-planning + epic-hypothesis + lean-ux-canvas 框架摘要 | ✅ |
+| 4.4 | 新建 pm/validation Skill | `.claude/skills/pm/validation/SKILL.md` + `exit-check.py` | G5 验证 Skill | ✅ |
+| 4.5 | 新建 pm/content-strategy Skill | `.claude/skills/pm/content-strategy/SKILL.md` + `exit-check.py` | CG0 内容策略 Skill | ✅ |
+| 4.6 | 新建 pm/distribution-planner Skill | `.claude/skills/pm/distribution-planner/SKILL.md` + `exit-check.py` | CG4 分发规划 Skill | ✅ |
+| 4.7 | 新建 pm/content-validation Skill | `.claude/skills/pm/content-validation/SKILL.md` + `exit-check.py` | CG5 内容验证 Skill | ✅ |
+| 4.8 | router.py 增加 pm/ 域路由 | `.claude/router.py` | 支持 `--domain pm` 过滤 | ✅ |
+| 4.9 | check-harness.py 增加 PM 域检查 | `.claude/check-harness.py` | 三域健康检查 | ✅ |
 
 **M4 完成标志**: PM 决策层完整了——有 pm/ 域的 Skill 提供方法论，有 exit-check 提供验证，有 Gate Points 提供决策点。
 
@@ -97,4 +97,5 @@
 |------|------|------|
 | 2026-04-17 | M1 任务 1.1-1.3 实施：exit-check.py 实现、CLAUDE.md PM 决策点、FEEDBACK-OBSERVER PM 类型 | Session 2 |
 | 2026-04-17 | M2 任务 2.1-2.7 实施：State 模板增强、exit-check PM 警告、L0/L6 新模板 | Session 3 |
-| 2026-04-17 | M3 任务 3.1-3.6 实施：G3 spec compliance + scope creep、G2 Phase→Spec mapping、G1 品牌验证、Spec Gap Protocol（SKILL.md）、CG0 Gate 定义、CG2 不可跳过; 修复 product-spec-builder ISSUES 格式统一 | Session 4 |
+| 2026-04-17 | M3 任务 3.1-3.6 实施 | Session 4 |
+| 2026-04-17 | M4 任务 4.1-4.9 实施：pm-skills 框架注入 3 个 dev Skill、4 个新 pm/ Skill、router 三域路由、check-harness 三域检查 | Session 5 |

@@ -95,9 +95,9 @@ python3 .claude/check-harness.py
 
 ```
 .claude/
-├── CLAUDE.md                          # Orchestrator protocol (dual-domain + PM decision gates)
-├── router.py                          # Skill matcher with --domain filter
-├── check-harness.py                   # Dual-track health check (dev + content)
+├── CLAUDE.md                          # Orchestrator protocol (three-domain + PM decision gates)
+├── router.py                          # Skill matcher with --domain filter (dev/content/pm)
+├── check-harness.py                   # Three-domain health check (dev + content + pm)
 │
 ├── skills/
 │   ├── dev/                           # Software development domain
@@ -110,11 +110,17 @@ python3 .claude/check-harness.py
 │   │   ├── code-review/               #   Two-stage code review [G3 PM Compliance Gate + Spec Gap]
 │   │   └── release-builder/           #   Release packaging [G4 PM Release Gate]
 │   │
-│   └── content/                        # Content production domain
-│       ├── script-writer/             #   口播文稿 → scenes.json + L2-spec [CG0]
-│       ├── visual-designer/           #   Scene → HTML slides [CG1 Visual Direction Gate]
-│       ├── tts-engine/                #   TTS → audio/ + subtitles.json [CG2 Voice Direction Gate - NOT skippable]
-│       └── video-compositor/          #   Compositing → final video [CG3 Final Review Gate]
+│   ├── content/                       # Content production domain
+│   │   ├── script-writer/             #   口播文稿 → scenes.json + L2-spec [CG0]
+│   │   ├── visual-designer/           #   Scene → HTML slides [CG1 Visual Direction Gate]
+│   │   ├── tts-engine/                #   TTS → audio/ + subtitles.json [CG2 Voice Direction Gate - NOT skippable]
+│   │   └── video-compositor/          #   Compositing → final video [CG3 Final Review Gate]
+│   │
+│   └── pm/                             # Product management decision domain
+│       ├── validation/                 #   Post-launch PM validation [G5 PM Validation Gate]
+│       ├── content-strategy/           #   Content strategy definition [CG0 PM Content Strategy Gate]
+│       ├── distribution-planner/       #   Distribution planning [CG4 PM Distribution Gate]
+│       └── content-validation/          #   Post-publish content validation [CG5 PM Content Validation Gate]
 │
 ├── hooks/                              # Sensors (检查层)
 │   ├── pre-commit-check.sh            #   Dev domain
@@ -138,20 +144,21 @@ python3 .claude/check-harness.py
 │   └── EVOLUTION-RUNNER.md
 │
 └── docs/
-    ├── HARNESS-ARCHITECTURE.md         #   Architecture documentation (dual-track)
+    ├── HARNESS-ARCHITECTURE.md         #   Architecture documentation (three-domain)
     ├── EVOLUTION-PROTOCOL.md           #   Steering Loop protocol
     └── CONTENT-PIPELINE.md             #   Content production flow
 ```
 
-## Dual-Track System
+## Three-Domain System
 
-The harness now supports two domains, each with its own skill chain and gate types:
+The harness now supports three domains, each with its own skill chain and gate types:
 
 ### Dev Track (Software Development)
 
 ```
 idea → product-spec-builder → design-brief-builder → design-maker
   → dev-planner → dev-builder → code-review → release-builder
+  → pm/validation (7/30 day post-launch)
   [Hard Gate: exit-check.py at each step]
   [PM Gates: G0→G1→G2→G3+G3b→G4→G5 with human decision points]
 ```
@@ -165,6 +172,18 @@ script/topic → script-writer → visual-designer → tts-engine → video-comp
 ```
 
 Content track uses **Dual Gates**: deterministic exit-check.py (Hard Gate) PLUS human judgment points (Creative Gate) for style, pacing, and quality decisions.
+
+### PM Track (Product Management Decision Gates)
+
+PM is a **cross-cutting decision layer** — not a parallel execution track, but a set of decision points that both Dev and Content tracks must pass through:
+
+```
+Dev Track:   idea → [G0] → [G1] → [G2] → [G3] → [G4] → [G5: pm/validation]
+Content Track: topic → [CG0: pm/content-strategy] → [CG1] → [CG2] → [CG3] → [CG4: pm/distribution-planner] → [CG5: pm/content-validation]
+                        ↑ PM横切决策层贯穿所有阶段 ↑
+```
+
+PM Skills provide **methodology and decision frameworks** at critical gates, ensuring both tracks make product decisions with rigor.
 
 ## Key Design Decisions
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Harness Health Check - Dual-Track Edition
-Verify that the Harness infrastructure is intact for both dev and content domains.
+Harness Health Check - Three-Domain Edition
+Verify that the Harness infrastructure is intact for dev, content, and pm domains.
 """
 
 import sys
@@ -26,6 +26,13 @@ CONTENT_SKILLS = [
     "visual-designer",
     "tts-engine",
     "video-compositor",
+]
+
+PM_SKILLS = [
+    "validation",
+    "content-strategy",
+    "distribution-planner",
+    "content-validation",
 ]
 
 STATE_FILES = [
@@ -84,6 +91,25 @@ def check_skills():
                 )
             )
 
+    # Check pm skills
+    for name in PM_SKILLS:
+        skill_md = skills_dir / "pm" / name / "SKILL.md"
+        exit_check = skills_dir / "pm" / name / "exit-check.py"
+        if not skill_md.exists():
+            ISSUES.append(
+                (
+                    "pm_skill_missing",
+                    f"PM skill SKILL.md not found: {skill_md}",
+                )
+            )
+        if not exit_check.exists():
+            ISSUES.append(
+                (
+                    "pm_exit_check_missing",
+                    f"PM skill exit-check.py not found: {exit_check}",
+                )
+            )
+
 
 def check_hooks():
     hooks_dir = ROOT / "hooks"
@@ -119,7 +145,7 @@ def main() -> int:
 
     if not ISSUES:
         print(
-            "✅ Harness health check passed. Both dev/ and content/ domains are intact."
+            "✅ Harness health check passed. All three domains (dev/, content/, pm/) are intact."
         )
         return 0
 

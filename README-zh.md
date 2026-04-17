@@ -95,9 +95,9 @@ python3 .claude/check-harness.py
 
 ```
 .claude/
-├── CLAUDE.md                          # 调度协议（双域路由 + PM 决策门）
-├── router.py                          # Skill 匹配器（--domain 过滤）
-├── check-harness.py                   # 双轨健康检查
+├── CLAUDE.md                          # 调度协议（三域路由 + PM 决策门）
+├── router.py                          # Skill 匹配器（--domain dev/content/pm 过滤）
+├── check-harness.py                   # 三域健康检查（dev + content + pm）
 │
 ├── skills/
 │   ├── dev/                           # 软件开发域
@@ -110,11 +110,17 @@ python3 .claude/check-harness.py
 │   │   ├── code-review/               #   两阶段代码审查 [G3 PM 合规门 + Spec缺口协议]
 │   │   └── release-builder/           #   发布打包 [G4 PM 发布门]
 │   │
-│   └── content/                        # 内容生产域
-│       ├── script-writer/             #   口播文稿 → scenes.json + L2-spec [CG0]
-│       ├── visual-designer/           #   场景 → HTML 幻灯片 [CG1 视觉方向门]
-│       ├── tts-engine/                #   语音合成 → audio/ + subtitles.json [CG2 声音方向门 - 不可跳过]
-│       └── video-compositor/          #   视频合成 → final-video.mp4 [CG3 最终审核门]
+│   ├── content/                       # 内容生产域
+│   │   ├── script-writer/             #   口播文稿 → scenes.json + L2-spec [CG0]
+│   │   ├── visual-designer/           #   场景 → HTML 幻灯片 [CG1 视觉方向门]
+│   │   ├── tts-engine/                #   语音合成 → audio/ + subtitles.json [CG2 声音方向门 - 不可跳过]
+│   │   └── video-compositor/          #   视频合成 → final-video.mp4 [CG3 最终审核门]
+│   │
+│   └── pm/                             # 产品管理决策域
+│       ├── validation/                 #   上线后效果验证 [G5 PM 验证门]
+│       ├── content-strategy/           #   内容策略定义 [CG0 PM 内容策略门]
+│       ├── distribution-planner/       #   分发规划 [CG4 PM 分发门]
+│       └── content-validation/          #   发布后内容验证 [CG5 PM 内容验证门]
 │
 ├── hooks/                              # 传感层
 │   ├── pre-commit-check.sh            #   开发域
@@ -138,18 +144,21 @@ python3 .claude/check-harness.py
 │   └── EVOLUTION-RUNNER.md
 │
 └── docs/
-    ├── HARNESS-ARCHITECTURE.md         #   架构文档（双轨）
+    ├── HARNESS-ARCHITECTURE.md         #   架构文档（三域）
     ├── EVOLUTION-PROTOCOL.md           #   方向盘协议
     └── CONTENT-PIPELINE.md             #   内容生产流程
 ```
 
-## 双轨道系统
+## 三域系统
+
+本 Harness 支持三个域，每个域有自己的 Skill 链和 Gate 类型：
 
 ### 开发轨道（软件开发）
 
 ```
 想法 → product-spec-builder → design-brief-builder → design-maker
   → dev-planner → dev-builder → code-review → release-builder
+  → pm/validation（上线后 7/30 天验证）
   [Hard Gate: exit-check.py 每步验证]
   [PM 决策门: G0→G1→G2→G3+G3b→G4→G5 每步需要人类决策]
 ```
