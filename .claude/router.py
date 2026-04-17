@@ -7,6 +7,7 @@ Supports three-domain routing: dev/, content/, and pm/
 import argparse
 import sys
 from pathlib import Path
+from typing import List, Optional
 
 SKILLS_DIR = Path(__file__).parent / "skills"
 
@@ -80,6 +81,21 @@ SKILL_INDEX = [
             "slides",
             "视觉设计",
             "出场动画",
+        ],
+        "domain": "content",
+    },
+    {
+        "name": "content/frontend-slides",
+        "triggers": [
+            "HTML slides",
+            "slide design",
+            "slide style",
+            "mood selection",
+            "style preview",
+            "幻灯片设计",
+            "风格预览",
+            "mood",
+            "slide layout",
         ],
         "domain": "content",
     },
@@ -184,7 +200,7 @@ SKILL_INDEX = [
 ]
 
 
-def route(query: str, domain: str | None = None) -> list[str]:
+def route(query: str, domain: Optional[str] = None) -> List[str]:
     """Route a user query to the best Skill(s).
 
     Args:

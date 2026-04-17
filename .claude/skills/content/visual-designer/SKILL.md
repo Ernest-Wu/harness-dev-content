@@ -137,7 +137,7 @@ python3 .claude/skills/content/visual-designer/exit-check.py
 ## References
 
 - 上游 Skill: `content/script-writer`
-- 委托 Skill: `frontend-slides`（外部技能，不在 Harness 内）
+- 委托 Skill: `frontend-slides`（Harness 内部 Skill，位于 `.claude/skills/content/frontend-slides/`）
 - 下游 Skill: `content/tts-engine`
 - 状态管理: `.claude/state/L2-spec.md`, `.claude/state/L3-design.md`
 - 模板目录: `templates/`（platform-overrides, visual-beats, scene-layouts, lower-thirds, animation-presets, slide-presets）

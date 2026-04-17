@@ -24,6 +24,7 @@ DEV_SKILLS = [
 CONTENT_SKILLS = [
     "script-writer",
     "visual-designer",
+    "frontend-slides",
     "tts-engine",
     "video-compositor",
 ]

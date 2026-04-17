@@ -52,6 +52,44 @@ Debug systematically using the scientific method. No guesswork. No changing five
 ### Pitfall 3: The Same Bug Repeatedly
 **Fix:** If a bug survives 3 fix attempts, stop. Re-examine the architecture or your understanding of the problem.
 
+## Output
+
+After completing the fix, write `.claude/state/LAST_BUGFIX.md` with the following structure:
+
+```markdown
+# Bug Fix Report
+
+## Hypothesis
+{What you think is wrong and why}
+
+## Evidence
+{Stack trace, error logs, data flow analysis}
+
+## Root Cause
+{The confirmed cause after hypothesis validation}
+
+## Fix
+{What was changed and why}
+
+## Test Verification
+- Failing test: {test name} → PASS
+- Regression: full test suite → PASS / {any failures}
+
+## Business Impact
+- Priority: {Must have | Should have | Could have | Won't have}
+- User impact: {who is affected and how}
+```
+
+## Exit-Check Criteria
+
+Run `exit-check.py` to verify:
+
+1. **HARD GATE**: `LAST_BUGFIX.md` must exist — bug-fixer must document the fix
+2. **HARD GATE**: Report must contain at least one of: hypothesis, evidence, or root cause
+3. **HARD GATE**: Report must be at least 100 characters
+4. **WARNING**: 3+ attempt markers suggest architectural review is needed
+5. **INFO**: Test verification and business impact are recommended but not blocking
+
 ## References
 
 - Related skills: dev-builder, code-review

@@ -1,0 +1,22 @@
+[project]
+name = "reliable-dev-harness"
+version = "1.0.0"
+description = "A three-domain product development harness combining spec-driven skill design with hard-gate engineering discipline."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Ernest Wu"},
+]
+
+[project.optional-dependencies]
+design-tools = [
+    "PyYAML>=6.0",
+    "requests>=2.28",
+]
+
+[tool.harness]
+# Harness exit-check scripts use only Python stdlib.
+# The [design-tools] extras are for .claude/skills/dev/design-maker/scripts/
+# (pencil-export.py and figma-export.py) which need PyYAML and requests.
+# Core exit-check.py scripts have ZERO external dependencies.
+python-version = ">=3.10"
