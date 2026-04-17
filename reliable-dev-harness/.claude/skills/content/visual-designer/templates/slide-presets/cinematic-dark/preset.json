@@ -1,0 +1,49 @@
+{
+  "name": "cinematic-dark",
+  "description": "电影感深色、晕影效果、宽色域，适合品牌内容和深度叙事",
+  "theme": {
+    "background": "#0D0D0D",
+    "primaryText": "#F5F5F5",
+    "secondaryText": "#8A8A8A",
+    "accent": "#E50914",
+    "vignette": true
+  },
+  "typography": {
+    "fontFamily": "Noto Sans SC",
+    "titleSize": 80,
+    "bodySize": 44,
+    "lineHeight": 1.7,
+    "fontWeight": {
+      "title": 700,
+      "body": 400
+    },
+    "letterSpacing": {
+      "title": 2,
+      "body": 1
+    }
+  },
+  "layouts": {
+    "9:16": {
+      "aspectRatio": "9/16",
+      "safeArea": { "top": 120, "bottom": 120, "left": 60, "right": 60 },
+      "contentAlignment": "center",
+      "titleSize": 80,
+      "bodySize": 44
+    },
+    "16:9": {
+      "aspectRatio": "16/9",
+      "safeArea": { "top": 100, "bottom": 100, "left": 150, "right": 150 },
+      "contentAlignment": "center",
+      "titleSize": 72,
+      "bodySize": 38
+    },
+    "4:5": {
+      "aspectRatio": "4/5",
+      "safeArea": { "top": 100, "bottom": 100, "left": 90, "right": 90 },
+      "contentAlignment": "center",
+      "titleSize": 76,
+      "bodySize": 42
+    }
+  },
+  "useCases": ["品牌内容", "深度叙事", "电影感视频", "高端产品"]
+}

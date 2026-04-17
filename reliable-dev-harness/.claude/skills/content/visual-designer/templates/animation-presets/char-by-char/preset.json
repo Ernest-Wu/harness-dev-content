@@ -1,0 +1,29 @@
+{
+  "name": "char-by-char",
+  "description": "逐字弹出+颜色渐变，适合标题和关键词强调",
+  "enter": {
+    "type": "charReveal",
+    "stagger": 0.05,
+    "duration": 0.4,
+    "easing": "ease-out",
+    "gradient": {
+      "colors": ["#6366F1", "#a855f7", "#ec4899"],
+      "direction": "90deg"
+    }
+  },
+  "exit": {
+    "type": "fadeScaleOut",
+    "duration": 0.4,
+    "scale": 0.9,
+    "easing": "ease-in"
+  },
+  "emphasis": {
+    "type": "gradientPulse",
+    "duration": 2,
+    "easing": "ease-in-out"
+  },
+  "transition": {
+    "type": "crossfade",
+    "duration": 25
+  }
+}

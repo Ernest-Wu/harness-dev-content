@@ -1,0 +1,19 @@
+/* === BEAT: NUMBER POP === */
+/* Usage: <span class="beat-number" data-beat-at="3.0">52.8%</span> */
+
+.beat-number {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 0.1em 0.3em;
+  border-radius: 0.2em;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.beat-number.beat-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}

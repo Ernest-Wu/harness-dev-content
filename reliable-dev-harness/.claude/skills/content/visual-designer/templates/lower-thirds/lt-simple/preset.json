@@ -1,0 +1,40 @@
+{
+  "name": "lt-simple",
+  "description": "简洁信息条：左侧色条+名字+职位，从左滑入",
+  "position": {
+    "bottom": "80px",
+    "left": "60px"
+  },
+  "animation": {
+    "enter": {
+      "type": "slideInLeft",
+      "duration": 0.6,
+      "delay": 1,
+      "easing": "ease-out"
+    },
+    "exit": {
+      "type": "slideOutLeft",
+      "duration": 0.4,
+      "easing": "ease-in"
+    }
+  },
+  "layout": {
+    "bar": {
+      "width": "4px",
+      "height": "60px",
+      "gradient": "linear-gradient(180deg, #6366F1, #a855f7)",
+      "borderRadius": "2px"
+    },
+    "text": {
+      "name": {
+        "fontSize": "24px",
+        "fontWeight": 700,
+        "color": "#ffffff"
+      },
+      "title": {
+        "fontSize": "14px",
+        "color": "#94a3b8"
+      }
+    }
+  }
+}

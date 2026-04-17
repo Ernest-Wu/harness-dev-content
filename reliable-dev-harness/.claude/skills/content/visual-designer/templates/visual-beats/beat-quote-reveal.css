@@ -1,0 +1,32 @@
+/* === BEAT: QUOTE REVEAL === */
+/* Usage:
+   <blockquote class="beat-quote" data-beat-at="4.0">
+     <span class="quote-mark">"</span>
+     <span class="quote-text">引用内容</span>
+   </blockquote>
+*/
+
+.beat-quote {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.beat-quote.beat-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.beat-quote .quote-mark {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0) rotate(-20deg);
+  transition: opacity 0.4s ease 0.1s,
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
+}
+
+.beat-quote.beat-active .quote-mark {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}

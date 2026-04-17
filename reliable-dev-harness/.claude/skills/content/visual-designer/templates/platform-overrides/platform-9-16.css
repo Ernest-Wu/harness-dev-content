@@ -1,0 +1,51 @@
+/* === PLATFORM OVERRIDE: 9:16 (1080×1920) === */
+/* Inject this AFTER viewport-base.css for Douyin / Instagram Reels */
+
+:root {
+  --title-size: clamp(1.75rem, 6vh, 3.5rem);
+  --h2-size: clamp(1.5rem, 4.5vh, 2.5rem);
+  --body-size: clamp(1rem, 2.5vh, 1.5rem);
+  --slide-padding: clamp(1.25rem, 5vh, 2.5rem);
+  --content-gap: clamp(0.75rem, 2.5vh, 1.5rem);
+  --element-gap: clamp(0.5rem, 1.5vh, 1rem);
+}
+
+.card,
+.container {
+  max-width: min(92vw, 960px);
+  max-height: min(55vh, 600px);
+}
+
+img,
+.image-container {
+  max-width: 100%;
+  max-height: min(40vh, 500px);
+  object-fit: contain;
+}
+
+.grid {
+  grid-template-columns: 1fr !important;
+}
+
+@media (max-height: 700px) {
+  :root {
+    --title-size: clamp(1.5rem, 5.5vh, 3rem);
+    --body-size: clamp(0.9rem, 2.2vh, 1.35rem);
+  }
+}
+
+@media (max-height: 600px) {
+  :root {
+    --title-size: clamp(1.35rem, 5vh, 2.5rem);
+    --body-size: clamp(0.85rem, 2vh, 1.25rem);
+    --slide-padding: clamp(1rem, 4vh, 2rem);
+  }
+}
+
+@media (max-height: 500px) {
+  :root {
+    --title-size: clamp(1.25rem, 4.5vh, 2rem);
+    --body-size: clamp(0.8rem, 1.8vh, 1.1rem);
+    --slide-padding: 0.875rem;
+  }
+}

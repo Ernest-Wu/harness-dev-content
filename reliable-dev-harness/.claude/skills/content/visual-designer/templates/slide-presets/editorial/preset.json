@@ -1,0 +1,45 @@
+{
+  "name": "editorial",
+  "description": "杂志风、等宽字体、网格布局，适合专业分析和行业报告",
+  "theme": {
+    "background": "#FAFAF8",
+    "primaryText": "#1A1A1A",
+    "secondaryText": "#666666",
+    "accent": "#0066CC",
+    "border": true
+  },
+  "typography": {
+    "fontFamily": "Source Han Sans SC, Noto Sans SC",
+    "titleSize": 72,
+    "bodySize": 42,
+    "lineHeight": 1.8,
+    "fontWeight": {
+      "title": 600,
+      "body": 400
+    }
+  },
+  "layouts": {
+    "9:16": {
+      "aspectRatio": "9/16",
+      "safeArea": { "top": 80, "bottom": 80, "left": 48, "right": 48 },
+      "contentAlignment": "left",
+      "titleSize": 72,
+      "bodySize": 42
+    },
+    "16:9": {
+      "aspectRatio": "16/9",
+      "safeArea": { "top": 60, "bottom": 60, "left": 100, "right": 100 },
+      "contentAlignment": "left",
+      "titleSize": 64,
+      "bodySize": 36
+    },
+    "4:5": {
+      "aspectRatio": "4/5",
+      "safeArea": { "top": 70, "bottom": 70, "left": 70, "right": 70 },
+      "contentAlignment": "left",
+      "titleSize": 68,
+      "bodySize": 40
+    }
+  },
+  "useCases": ["专业分析", "行业报告", "数据解读", "深度评论"]
+}

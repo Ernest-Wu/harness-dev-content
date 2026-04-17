@@ -1,0 +1,44 @@
+{
+  "name": "lt-icon-text",
+  "description": "图标文字：胶囊形状+图标+关键词高亮，弹入",
+  "position": {
+    "top": "50%",
+    "left": "50%",
+    "transform": "translate(-50%, -50%)"
+  },
+  "animation": {
+    "enter": {
+      "type": "popIn",
+      "duration": 0.5,
+      "delay": 1,
+      "easing": "ease-out",
+      "bounce": true
+    },
+    "exit": {
+      "type": "popOut",
+      "duration": 0.3,
+      "easing": "ease-in"
+    }
+  },
+  "layout": {
+    "container": {
+      "background": "rgba(99, 102, 241, 0.1)",
+      "border": "1px solid rgba(99, 102, 241, 0.3)",
+      "borderRadius": "60px",
+      "padding": "20px 32px",
+      "display": "flex",
+      "alignItems": "center",
+      "gap": "16px"
+    },
+    "icon": {
+      "width": "32px",
+      "height": "32px",
+      "color": "#6366F1"
+    },
+    "keyword": {
+      "fontSize": "28px",
+      "fontWeight": 700,
+      "color": "#ffffff"
+    }
+  }
+}

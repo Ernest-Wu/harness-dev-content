@@ -1,0 +1,15 @@
+/* === BEAT: KEYWORD HIGHLIGHT === */
+/* Usage: <span class="beat-keyword" data-beat-at="2.5">关键词</span> */
+
+.beat-keyword {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              color 0.3s ease,
+              text-shadow 0.3s ease;
+}
+
+.beat-keyword.beat-active {
+  transform: scale(1.15);
+  color: var(--accent-color, #ff6b35);
+  text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+}

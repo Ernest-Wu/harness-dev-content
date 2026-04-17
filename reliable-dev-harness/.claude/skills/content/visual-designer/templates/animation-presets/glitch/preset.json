@@ -1,0 +1,26 @@
+{
+  "name": "glitch",
+  "description": "数字故障效果，适合科技感和赛博朋克内容",
+  "enter": {
+    "type": "glitchIn",
+    "duration": 0.3,
+    "intensity": 0.8,
+    "easing": "ease-in"
+  },
+  "exit": {
+    "type": "glitchOut",
+    "duration": 0.25,
+    "intensity": 0.6,
+    "easing": "ease-out"
+  },
+  "emphasis": {
+    "type": "glitchPulse",
+    "scale": 1.02,
+    "duration": 0.15,
+    "intensity": 0.4
+  },
+  "transition": {
+    "type": "glitchDissolve",
+    "duration": 20
+  }
+}

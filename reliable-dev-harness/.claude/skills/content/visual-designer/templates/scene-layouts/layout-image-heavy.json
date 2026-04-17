@@ -1,0 +1,47 @@
+{
+  "name": "layout-image-heavy",
+  "description": "插图为主布局（<50字），插图60%宽度，文字40%宽度",
+  "textThreshold": 50,
+  "layout": {
+    "direction": "horizontal",
+    "imageWidth": "60%",
+    "textWidth": "40%"
+  },
+  "image": {
+    "position": "right",
+    "verticalAlign": "center",
+    "maskGradient": true,
+    "maskOpacity": 0.4,
+    "animation": {
+      "enter": {
+        "type": "slideIn",
+        "direction": "right",
+        "duration": 0.8,
+        "delay": 0.2,
+        "easing": "ease-out"
+      },
+      "emphasis": {
+        "type": "subtlePulse",
+        "duration": 3,
+        "easing": "ease-in-out"
+      }
+    }
+  },
+  "text": {
+    "position": "left",
+    "verticalAlign": "center",
+    "animation": {
+      "enter": {
+        "type": "slideIn",
+        "direction": "left",
+        "duration": 0.6,
+        "delay": 0.4,
+        "easing": "ease-out"
+      }
+    }
+  },
+  "platformSafezone": {
+    "top": "10%",
+    "bottom": "10%"
+  }
+}

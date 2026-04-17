@@ -1,0 +1,74 @@
+/**
+ * lt-quote - Quote lower third
+ *
+ * Displays a styled quote with large quotation mark and attribution.
+ * Centered at the bottom of the slide, fades in.
+ *
+ * Usage:
+ *   import { LT_QUOTE_CSS } from './lt-quote/styles.css';
+ *
+ * In HTML:
+ *   <div class="lt-quote">
+ *     <div class="lt-quote-mark">"</div>
+ *     <div class="lt-quote-text">这是一段引言文字...</div>
+ *     <div class="lt-quote-author">—— 张三</div>
+ *   </div>
+ */
+
+export const LT_QUOTE_CSS = `
+.lt-quote {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  max-width: 600px;
+  text-align: center;
+  opacity: 0;
+  -webkit-animation: ltFadeIn 0.8s ease-out 1s forwards;
+  animation: ltFadeIn 0.8s ease-out 1s forwards;
+}
+
+.lt-quote-mark {
+  font-size: 80px;
+  color: #6366F1;
+  opacity: 0.3;
+  line-height: 0.5;
+  font-family: Georgia, 'Times New Roman', serif;
+  margin-bottom: 10px;
+}
+
+.lt-quote-text {
+  font-size: 22px;
+  color: #ffffff;
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.lt-quote-author {
+  font-size: 14px;
+  color: #94a3b8;
+  font-style: normal;
+}
+
+@-webkit-keyframes ltFadeIn {
+  0% { opacity: 0; -webkit-transform: translateX(-50%) translateY(20px); }
+  100% { opacity: 1; -webkit-transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes ltFadeIn {
+  0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.lt-quote-exit {
+  -webkit-animation: ltFadeOut 0.4s ease-in forwards;
+  animation: ltFadeOut 0.4s ease-in forwards;
+}
+
+@-webkit-keyframes ltFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+`;

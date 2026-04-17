@@ -1,0 +1,35 @@
+{
+  "name": "lt-stat",
+  "description": "数据展示：右侧大号数字+小标签，从右滑入",
+  "position": {
+    "bottom": "80px",
+    "right": "60px"
+  },
+  "animation": {
+    "enter": {
+      "type": "slideInRight",
+      "duration": 0.6,
+      "delay": 1,
+      "easing": "ease-out"
+    },
+    "exit": {
+      "type": "slideOutRight",
+      "duration": 0.4,
+      "easing": "ease-in"
+    }
+  },
+  "layout": {
+    "number": {
+      "fontSize": "56px",
+      "fontWeight": 900,
+      "gradient": "linear-gradient(135deg, #6366F1, #a855f7)",
+      "backgroundClip": true
+    },
+    "label": {
+      "fontSize": "14px",
+      "color": "#64748b",
+      "textTransform": "uppercase",
+      "letterSpacing": "2px"
+    }
+  }
+}

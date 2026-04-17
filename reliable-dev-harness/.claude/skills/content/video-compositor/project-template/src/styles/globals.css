@@ -1,0 +1,63 @@
+/* Global styles for Remotion video */
+
+/* LAYOUT CONSTRAINTS (enforced):
+ * - All font sizes use clamp()
+ * - Content container maxWidth: 1200
+ * - Background decorations max 30% viewport
+ * - No fixed pixel values for responsive elements
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Video container - always centered */
+#video-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+/* Text selection */
+::selection {
+  background-color: rgba(255, 107, 53, 0.3);
+  color: inherit;
+}
+
+/* Theme variables */
+:root {
+  --color-bg-dark: #0d0d0d;
+  --color-bg-light: #f5f5f5;
+  --color-text-dark: #ffffff;
+  --color-text-light: #1a1a1a;
+  --color-accent: #ff6b35;
+  --color-accent-blue: #4a9eff;
+  --color-accent-green: #50c878;
+
+  /* Responsive spacing using clamp() */
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 2vw, 1rem);
+  --space-md: clamp(1rem, 3vw, 2rem);
+  --space-lg: clamp(2rem, 5vw, 4rem);
+  --space-xl: clamp(3rem, 8vw, 6rem);
+
+  /* Content width constraints */
+  --content-max-width: 1200px;
+  --content-max-width-sm: 600px;
+}

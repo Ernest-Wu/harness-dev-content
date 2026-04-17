@@ -1,0 +1,43 @@
+/* === PLATFORM OVERRIDE: 4:5 (1080×1350) === */
+/* Inject this AFTER viewport-base.css for Xiaohongshu 种草版 */
+
+:root {
+  --title-size: clamp(1.65rem, 5.5vh, 3.25rem);
+  --h2-size: clamp(1.4rem, 4vh, 2.25rem);
+  --body-size: clamp(0.95rem, 2.3vh, 1.45rem);
+  --slide-padding: clamp(1.25rem, 4.5vh, 2.25rem);
+  --content-gap: clamp(0.75rem, 2.2vh, 1.4rem);
+  --element-gap: clamp(0.5rem, 1.4vh, 0.9rem);
+}
+
+.card,
+.container {
+  max-width: min(90vw, 980px);
+  max-height: min(60vh, 650px);
+}
+
+img,
+.image-container {
+  max-width: 100%;
+  max-height: min(45vh, 450px);
+  object-fit: contain;
+}
+
+.grid {
+  grid-template-columns: 1fr !important;
+}
+
+@media (max-height: 700px) {
+  :root {
+    --title-size: clamp(1.45rem, 5vh, 2.75rem);
+    --body-size: clamp(0.9rem, 2vh, 1.3rem);
+  }
+}
+
+@media (max-height: 600px) {
+  :root {
+    --title-size: clamp(1.3rem, 4.5vh, 2.25rem);
+    --body-size: clamp(0.85rem, 1.8vh, 1.15rem);
+    --slide-padding: clamp(1rem, 3.5vh, 1.75rem);
+  }
+}

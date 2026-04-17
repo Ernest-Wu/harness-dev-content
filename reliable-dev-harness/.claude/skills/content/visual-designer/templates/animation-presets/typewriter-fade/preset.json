@@ -1,0 +1,22 @@
+{
+  "name": "typewriter-fade",
+  "description": "打字机效果配合淡入淡出",
+  "enter": {
+    "type": "typewriter",
+    "speed": 0.1,
+    "easing": "ease-out"
+  },
+  "exit": {
+    "type": "fade",
+    "duration": 0.3
+  },
+  "emphasis": {
+    "type": "scale-pulse",
+    "scale": 1.05,
+    "duration": 0.2
+  },
+  "transition": {
+    "type": "fade",
+    "duration": 15
+  }
+}

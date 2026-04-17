@@ -1,0 +1,29 @@
+{
+  "name": "ken-burns",
+  "description": "电影感效果，缓慢的缩放和位移，适合叙事性内容",
+  "enter": {
+    "type": "kenBurnsIn",
+    "duration": 1.5,
+    "easing": "ease-in-out"
+  },
+  "exit": {
+    "type": "kenBurnsOut",
+    "duration": 1.2,
+    "easing": "ease-in"
+  },
+  "emphasis": {
+    "type": "slow-zoom",
+    "scale": 1.03,
+    "duration": 0.8
+  },
+  "transition": {
+    "type": "crossfade",
+    "duration": 25
+  },
+  "kenBurnsEffect": {
+    "minZoom": 1.0,
+    "maxZoom": 1.15,
+    "panAmount": 30,
+    "duration": 8
+  }
+}

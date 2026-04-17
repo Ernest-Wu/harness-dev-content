@@ -1,0 +1,52 @@
+{
+  "presets": [
+    {
+      "id": "professional-female",
+      "label": "专业科普-女",
+      "description": "清晰正式",
+      "voice": "YunyangNeural",
+      "speedAdjustment": 0,
+      "language": "zh-CN"
+    },
+    {
+      "id": "professional-male",
+      "label": "专业科普-男",
+      "description": "沉稳深度",
+      "voice": "YunhaoNeural",
+      "speedAdjustment": -5,
+      "language": "zh-CN"
+    },
+    {
+      "id": "casual-female",
+      "label": "轻松闲聊-女",
+      "description": "亲切活人感",
+      "voice": "XiaoshuangNeural",
+      "speedAdjustment": 5,
+      "language": "zh-CN"
+    },
+    {
+      "id": "casual-male",
+      "label": "轻松闲聊-男",
+      "description": "随和自然",
+      "voice": "YunxiNeural",
+      "speedAdjustment": 0,
+      "language": "zh-CN"
+    },
+    {
+      "id": "energetic-male",
+      "label": "激情解说-男",
+      "description": "高能量快节奏",
+      "voice": "YunzeNeural",
+      "speedAdjustment": 10,
+      "language": "zh-CN"
+    },
+    {
+      "id": "gentle-female",
+      "label": "温柔讲述-女",
+      "description": "柔和缓慢",
+      "voice": "XiaohanNeural",
+      "speedAdjustment": -10,
+      "language": "zh-CN"
+    }
+  ]
+}

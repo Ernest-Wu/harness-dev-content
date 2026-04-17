@@ -1,0 +1,25 @@
+{
+  "name": "text-scramble",
+  "description": "文字随机滚动解密效果，科技感强",
+  "enter": {
+    "type": "scramble",
+    "duration": 2,
+    "frames": 30,
+    "charset": "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@%&*",
+    "easing": "ease-out"
+  },
+  "exit": {
+    "type": "fadeOut",
+    "duration": 0.5,
+    "easing": "ease-in"
+  },
+  "emphasis": {
+    "type": "subtlePulse",
+    "scale": 1.02,
+    "duration": 0.3
+  },
+  "transition": {
+    "type": "crossfade",
+    "duration": 25
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "bold-high-contrast",
+  "description": "强对比配色、粗体字、视觉冲击",
+  "theme": {
+    "background": "#1A1A1A",
+    "primaryText": "#FFFFFF",
+    "secondaryText": "#B0B0B0",
+    "accent": "#FF6B35"
+  },
+  "typography": {
+    "fontFamily": "Noto Sans SC",
+    "titleSize": 88,
+    "bodySize": 52,
+    "lineHeight": 1.5,
+    "fontWeight": {
+      "title": 900,
+      "body": 600
+    }
+  },
+  "layouts": {
+    "9:16": {
+      "aspectRatio": "9/16",
+      "safeArea": { "top": 80, "bottom": 80, "left": 50, "right": 50 },
+      "contentAlignment": "center",
+      "titleSize": 88,
+      "bodySize": 52
+    },
+    "16:9": {
+      "aspectRatio": "16/9",
+      "safeArea": { "top": 60, "bottom": 60, "left": 100, "right": 100 },
+      "contentAlignment": "center",
+      "titleSize": 72,
+      "bodySize": 40
+    },
+    "4:5": {
+      "aspectRatio": "4/5",
+      "safeArea": { "top": 70, "bottom": 70, "left": 70, "right": 70 },
+      "contentAlignment": "center",
+      "titleSize": 80,
+      "bodySize": 46
+    }
+  },
+  "useCases": ["热点追踪", "观点输出", "情绪渲染"]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "layered-text",
+  "description": "文字层叠+3D旋转效果，电影感",
+  "enter": {
+    "type": "layeredReveal",
+    "stagger": 0.15,
+    "duration": 0.8,
+    "easing": "ease-out",
+    "depth": {
+      "back": { "translateZ": -20, "rotateX": 5, "opacity": 0.5 },
+      "mid": { "translateZ": -10, "rotateX": 2, "opacity": 0.7 },
+      "front": { "translateZ": 0, "rotateX": 0, "opacity": 1 }
+    }
+  },
+  "exit": {
+    "type": "layeredFadeOut",
+    "duration": 0.5,
+    "easing": "ease-in"
+  },
+  "emphasis": {
+    "type": "layerShift",
+    "translateZ": 5,
+    "duration": 0.3,
+    "easing": "ease-in-out"
+  },
+  "transition": {
+    "type": "crossfade",
+    "duration": 25
+  }
+}

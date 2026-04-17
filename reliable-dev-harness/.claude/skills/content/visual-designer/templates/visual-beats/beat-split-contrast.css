@@ -1,0 +1,49 @@
+/* === BEAT: SPLIT CONTRAST === */
+/* Usage:
+   <div class="beat-split" data-beat-at="5.0">
+     <div class="split-left">左侧内容</div>
+     <div class="split-divider"></div>
+     <div class="split-right">右侧内容</div>
+   </div>
+*/
+
+.beat-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+}
+
+.split-left,
+.split-right {
+  opacity: 0;
+  transform: translateX(var(--split-offset, 30px));
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.split-left {
+  --split-offset: -30px;
+}
+
+.split-right {
+  --split-offset: 30px;
+}
+
+.split-divider {
+  width: 2px;
+  height: 0%;
+  background: var(--accent-color, #ffffff);
+  opacity: 0.4;
+  transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.beat-split.beat-active .split-left,
+.beat-split.beat-active .split-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.beat-split.beat-active .split-divider {
+  height: 100%;
+}

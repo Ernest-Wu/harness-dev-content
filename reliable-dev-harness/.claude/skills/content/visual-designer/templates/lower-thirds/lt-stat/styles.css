@@ -1,0 +1,73 @@
+/**
+ * lt-stat - Statistics lower third
+ *
+ * Displays a large number with a label below it.
+ * Positioned on the right side, slides in from right.
+ *
+ * Usage:
+ *   import { LT_STAT_CSS } from './lt-stat/styles.css';
+ *
+ * In HTML:
+ *   <div class="lt-stat">
+ *     <div class="lt-stat-number">1000万+</div>
+ *     <div class="lt-stat-label">代码行数</div>
+ *   </div>
+ */
+
+export const LT_STAT_CSS = `
+.lt-stat {
+  position: absolute;
+  bottom: 80px;
+  right: 60px;
+  text-align: right;
+  opacity: 0;
+  -webkit-transform: translateX(100px);
+  transform: translateX(100px);
+  -webkit-animation: ltSlideInRight 0.6s ease-out 1s forwards;
+  animation: ltSlideInRight 0.6s ease-out 1s forwards;
+}
+
+.lt-stat-number {
+  font-size: 56px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #6366F1, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.lt-stat-label {
+  font-size: 14px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+@-webkit-keyframes ltSlideInRight {
+  0% { opacity: 0; -webkit-transform: translateX(100px); }
+  100% { opacity: 1; -webkit-transform: translateX(0); }
+}
+
+@keyframes ltSlideInRight {
+  0% { opacity: 0; transform: translateX(100px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.lt-stat-exit {
+  -webkit-animation: ltSlideOutRight 0.4s ease-in forwards;
+  animation: ltSlideOutRight 0.4s ease-in forwards;
+}
+
+@-webkit-keyframes ltSlideOutRight {
+  0% { opacity: 1; -webkit-transform: translateX(0); }
+  100% { opacity: 0; -webkit-transform: translateX(100px); }
+}
+
+@keyframes ltSlideOutRight {
+  0% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(100px); }
+}
+`;

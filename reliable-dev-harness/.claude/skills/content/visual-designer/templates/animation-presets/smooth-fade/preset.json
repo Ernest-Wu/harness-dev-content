@@ -1,0 +1,24 @@
+{
+  "name": "smooth-fade",
+  "description": "专业级平滑淡入淡出，适合高端品牌内容和电影感视频",
+  "enter": {
+    "type": "fadeIn",
+    "duration": 1.2,
+    "easing": "ease-out-cubic"
+  },
+  "exit": {
+    "type": "fadeOut",
+    "duration": 1.0,
+    "easing": "ease-in-cubic"
+  },
+  "emphasis": {
+    "type": "subtleFloat",
+    "scale": 1.02,
+    "duration": 0.5,
+    "easing": "ease-in-out"
+  },
+  "transition": {
+    "type": "smoothDissolve",
+    "duration": 30
+  }
+}

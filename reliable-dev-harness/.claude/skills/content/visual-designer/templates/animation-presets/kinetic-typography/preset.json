@@ -1,0 +1,27 @@
+{
+  "name": "kinetic-typography",
+  "description": "文字逐字/逐行弹入+轻微旋转，适合标题和强调内容",
+  "enter": {
+    "type": "springBounce",
+    "stagger": 0.05,
+    "duration": 0.6,
+    "scale": { "from": 0.5, "to": 1 },
+    "rotation": { "from": -5, "to": 0 },
+    "easing": "ease-out"
+  },
+  "exit": {
+    "type": "fadeScaleOut",
+    "duration": 0.4,
+    "scale": 0.9,
+    "easing": "ease-in"
+  },
+  "emphasis": {
+    "type": "pulse",
+    "scale": 1.05,
+    "duration": 0.2
+  },
+  "transition": {
+    "type": "crossfade",
+    "duration": 25
+  }
+}

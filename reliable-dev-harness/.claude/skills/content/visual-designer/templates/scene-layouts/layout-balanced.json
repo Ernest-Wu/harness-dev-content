@@ -1,0 +1,44 @@
+{
+  "name": "layout-balanced",
+  "description": "平衡布局（50-150字），插图45%宽度，文字55%宽度",
+  "textThreshold": { "min": 50, "max": 150 },
+  "layout": {
+    "direction": "horizontal",
+    "imageWidth": "45%",
+    "textWidth": "55%"
+  },
+  "image": {
+    "position": "left",
+    "verticalAlign": "center",
+    "borderStyle": {
+      "width": 1,
+      "color": "rgba(255,255,255,0.1)",
+      "radius": 8
+    },
+    "animation": {
+      "enter": {
+        "type": "fadeIn",
+        "duration": 0.6,
+        "delay": 0.3,
+        "easing": "ease-out"
+      }
+    }
+  },
+  "text": {
+    "position": "right",
+    "verticalAlign": "center",
+    "animation": {
+      "enter": {
+        "type": "charReveal",
+        "stagger": 0.05,
+        "duration": 0.4,
+        "delay": 0.5,
+        "easing": "ease-out"
+      }
+    }
+  },
+  "platformSafezone": {
+    "top": "10%",
+    "bottom": "10%"
+  }
+}

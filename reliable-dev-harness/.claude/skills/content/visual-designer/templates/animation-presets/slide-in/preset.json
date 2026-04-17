@@ -1,0 +1,23 @@
+{
+  "name": "slide-in",
+  "description": "文字从侧边滑入",
+  "enter": {
+    "type": "slideFromLeft",
+    "duration": 0.4,
+    "easing": "ease-out"
+  },
+  "exit": {
+    "type": "slideToRight",
+    "duration": 0.3,
+    "easing": "ease-in"
+  },
+  "emphasis": {
+    "type": "bounce",
+    "scale": 1.08,
+    "duration": 0.3
+  },
+  "transition": {
+    "type": "slide",
+    "duration": 20
+  }
+}

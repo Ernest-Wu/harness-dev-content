@@ -1,0 +1,43 @@
+{
+  "name": "vibrant-gradient",
+  "description": "渐变背景、活力配色、年轻感",
+  "theme": {
+    "backgroundGradient": {
+      "start": "#6366F1",
+      "end": "#8B5CF6"
+    },
+    "primaryText": "#FFFFFF",
+    "secondaryText": "#F0F0FF",
+    "accent": "#FBBF24"
+  },
+  "typography": {
+    "fontFamily": "Noto Sans SC",
+    "titleSize": 76,
+    "bodySize": 44,
+    "lineHeight": 1.7
+  },
+  "layouts": {
+    "9:16": {
+      "aspectRatio": "9/16",
+      "safeArea": { "top": 120, "bottom": 120, "left": 50, "right": 50 },
+      "contentAlignment": "center",
+      "titleSize": 76,
+      "bodySize": 44
+    },
+    "16:9": {
+      "aspectRatio": "16/9",
+      "safeArea": { "top": 80, "bottom": 80, "left": 120, "right": 120 },
+      "contentAlignment": "center",
+      "titleSize": 60,
+      "bodySize": 32
+    },
+    "4:5": {
+      "aspectRatio": "4/5",
+      "safeArea": { "top": 100, "bottom": 100, "left": 80, "right": 80 },
+      "contentAlignment": "center",
+      "titleSize": 68,
+      "bodySize": 38
+    }
+  },
+  "useCases": ["轻松闲聊", "生活分享", "日常Vlog"]
+}

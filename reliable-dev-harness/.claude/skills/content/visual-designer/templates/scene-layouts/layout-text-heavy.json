@@ -1,0 +1,47 @@
+{
+  "name": "layout-text-heavy",
+  "description": "文字为主布局（>150字），插图小尺寸放角落，文字居中",
+  "textThreshold": 150,
+  "layout": {
+    "direction": "stacked",
+    "textMaxWidth": "800px"
+  },
+  "image": {
+    "position": "top-right",
+    "maxWidth": "30%",
+    "verticalAlign": "top",
+    "horizontalAlign": "right",
+    "margin": { "top": "15%", "right": "10%" },
+    "shadow": {
+      "enabled": true,
+      "blur": 20,
+      "opacity": 0.3
+    },
+    "animation": {
+      "enter": {
+        "type": "scaleIn",
+        "duration": 0.5,
+        "delay": 0.2,
+        "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+      }
+    }
+  },
+  "text": {
+    "position": "center",
+    "verticalAlign": "middle",
+    "maxWidth": "800px",
+    "animation": {
+      "enter": {
+        "type": "charReveal",
+        "stagger": 0.03,
+        "duration": 0.4,
+        "delay": 0.4,
+        "easing": "ease-out"
+      }
+    }
+  },
+  "platformSafezone": {
+    "top": "10%",
+    "bottom": "10%"
+  }
+}
