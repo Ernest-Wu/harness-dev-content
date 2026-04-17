@@ -91,7 +91,7 @@ python3 .claude/check-harness.py
 
 ## 目录结构
 
-📊 [查看交互式架构图](architecture.html)
+📊 [查看架构图](architecture.svg) | [交互式版本](architecture.html)
 
 ```
 .claude/

@@ -91,7 +91,7 @@ python3 .claude/check-harness.py
 
 ## Architecture
 
-📊 [View Interactive Architecture Diagram](architecture.html)
+📊 [View Architecture Diagram](architecture.svg) | [Interactive Version](architecture.html)
 
 ```
 .claude/
