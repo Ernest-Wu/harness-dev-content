@@ -1,0 +1,43 @@
+screen: Login Page
+size: [375, 812]
+background: "#FFFFFF"
+elements:
+  - type: text
+    text: "Welcome Back"
+    position: [24, 60]
+    font_size: 28
+    font_weight: 700
+    color: "#111827"
+  - type: text
+    text: "Sign in to continue"
+    position: [24, 100]
+    font_size: 16
+    font_weight: 400
+    color: "#6B7280"
+  - type: input
+    label: "Email"
+    position: [24, 148]
+    size: [327, 48]
+    border_radius: 8
+    border_color: "#D1D5DB"
+    background: "#F9FAFB"
+  - type: input
+    label: "Password"
+    position: [24, 212]
+    size: [327, 48]
+    border_radius: 8
+    border_color: "#D1D5DB"
+    background: "#F9FAFB"
+  - type: button
+    text: "Sign In"
+    position: [24, 288]
+    size: [327, 48]
+    background: "#4F46E5"
+    color: "#FFFFFF"
+    border_radius: 8
+  - type: text
+    text: "Forgot password?"
+    position: [24, 352]
+    font_size: 14
+    font_weight: 500
+    color: "#4F46E5"
