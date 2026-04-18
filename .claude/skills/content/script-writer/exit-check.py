@@ -5,6 +5,7 @@ Deterministic gate verifying scene breakdown output quality.
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -103,6 +104,22 @@ def check():
                 "spec_missing_mood",
                 f"{SPEC_PATH} must specify Mood (Impressed, Excited, Calm, or Inspired).",
             )
+
+        # 6. If topic input, draft-script.md must exist and be non-empty
+        if re.search(r"Input\s*:\s*topic", content, re.IGNORECASE):
+            draft_path = Path("draft-script.md")
+            if not draft_path.exists():
+                add_issue(
+                    "draft_script_missing",
+                    "L2-spec.md indicates topic input but draft-script.md does not exist. "
+                    "Entry B must produce a draft script before scene breakdown.",
+                )
+            elif not draft_path.read_text(encoding="utf-8").strip():
+                add_issue(
+                    "draft_script_empty",
+                    "draft-script.md exists but is empty. "
+                    "Entry B must produce non-empty spoken script content.",
+                )
 
 
 def main() -> int:
