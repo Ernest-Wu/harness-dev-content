@@ -66,7 +66,11 @@ Claude 自动执行：
   8. Creative Gate：你确认最终视频质量
 ```
 
-**你做**：选平台/风格、确认场景、批准质量。
+**也可以只给一个话题**："我想做一期关于 AI 编程的口播"
+- script-writer 激活研究模式：topic → 研究 → 选题 → 确认平台/风格 → 生成口播稿 → 场景拆分
+- 内置 G0a（选题确认）和 G0b（参数确认）两个 Creative Gate，确保成稿前你掌控内容方向
+
+**你做**：选平台/风格、确认场景、批准质量（或从话题开始时选择方向/参数）。
 **Harness 做**：生成资产、验证输出、确保流水线一致性。
 
 ### 第四步：CLI 工具（可选）
@@ -111,7 +115,7 @@ python3 .claude/check-harness.py
 │   │   └── release-builder/           #   发布打包 [G4 PM 发布门]
 │   │
 │   ├── content/                       # 内容生产域
-│   │   ├── script-writer/             #   口播文稿 → scenes.json + L2-spec [CG0]
+│   │   ├── script-writer/             #   口播文稿/话题 → scenes.json + L2-spec [CG0，话题入口含 G0a+G0b]
 │   │   ├── visual-designer/           #   场景 → HTML 幻灯片 [CG1 视觉方向门]
 │   │   ├── tts-engine/                #   语音合成 → audio/ + subtitles.json [CG2 声音方向门 - 不可跳过]
 │   │   └── video-compositor/          #   视频合成 → final-video.mp4 [CG3 最终审核门]

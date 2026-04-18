@@ -72,7 +72,7 @@ skills/
 
 | 阶段 | 当前 Skill | 显式 Creative Gate | 隐式 PM 决策（应显式） | 缺失的 PM 关注 |
 |------|-----------|-------------------|---------------------|--------------|
-| **Script** | script-writer | G0: 平台/Mood/时长<br>G1: 场景拆分 | 内容主题适用性、目标受众定义、核心信息优先级、Hook有效性、CTA定义 | 品牌调性验证、KPI定义、差异化策略、合规检查 |
+| **Script** | script-writer | G0: 平台/Mood/时长<br>G0a: 选题方向（topic 入口）<br>G0b: 参数确认（topic 入口）<br>G1: 场景拆分 | 内容主题适用性、目标受众定义、核心信息优先级、Hook有效性、CTA定义 | 品牌调性验证、KPI定义、差异化策略、合规检查 |
 | **Visual** | visual-designer | G2a: 图片策略<br>G2b: Style Preview | 品牌视觉规范符合性、配图appropriateness、视觉层次结构、字幕区可读性 | 品牌指南引用、版权图片、文化敏感性、可访问性 |
 | **TTS** | tts-engine | G4a-1: TTS风格（可跳过⚠️） | 声音品牌符合性、语速内容适配、发音准确性、音频一致性 | 背景音乐策略、音频质量标准、字幕格式规范 |
 | **Video** | video-compositor | G4b: 最终视频确认 | End Card/CTA、片头片尾品牌、缩略图质量、字幕移动端可读性 | 发布元数据策略、UTM追踪、版权声明 |
@@ -247,7 +247,7 @@ Creative Gate: PM 决定 GO / PIVOT / KILL
 #### CG0: PM Content Strategy Gate — 内容策略验证
 
 ```
-时机: 口播稿/主题输入时（script-writer 之前）
+时机: 口播稿/主题输入时（script-writer 之前或内部）
 输入: 原始主题/口播稿
 PM 决策:
   1. 目标受众是谁？（年龄/兴趣/痛点）
@@ -259,6 +259,11 @@ PM 决策:
 Hard Gate: 目标受众 + 业务目标 + KPI 已定义
 Creative Gate: 用户确认内容方向
 产出: L0-strategy.md（新增状态文件）
+
+补充: 当输入为 topic（无现成文稿）时，script-writer 内部包含 G0a（选题方向确认）和 G0b（平台/风格/力度确认）两个 Creative Gate。此时 CG0 与 G0a/G0b 的关系：
+- CG0（pm/content-strategy）负责业务策略（受众、KPI、差异化）
+- G0a/G0b（script-writer 内部）负责内容策略（选题、表达风格、平台规格）
+- 如 L0-strategy.md 已存在，G0a/G0b 应参考其中的受众和 KPI 假设
 ```
 
 #### CG1: PM Visual Direction Gate — 视觉方向确认

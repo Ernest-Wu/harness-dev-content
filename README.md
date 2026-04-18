@@ -66,7 +66,11 @@ Claude will:
   8. Creative Gate: you approve the final video
 ```
 
-**You do**: Choose platform/style, confirm scenes, approve quality.
+**You can also start from just a topic**: "我想做一期关于 AI 编程的口播"
+- script-writer activates research mode: topic → research → direction selection → platform/style confirmation → draft script → scene breakdown
+- Built-in Creative Gates G0a (direction) and G0b (parameters) ensure you control the content before generation
+
+**You do**: Choose platform/style, confirm scenes, approve quality (or choose direction/parameters when starting from topic).
 **Harness does**: Generate assets, validate outputs, ensure pipeline consistency.
 
 ### Step 4: CLI Tools (optional)
@@ -111,7 +115,7 @@ python3 .claude/check-harness.py
 │   │   └── release-builder/           #   Release packaging [G4 PM Release Gate]
 │   │
 │   ├── content/                       # Content production domain
-│   │   ├── script-writer/             #   口播文稿 → scenes.json + L2-spec [CG0]
+│   │   ├── script-writer/             #   口播文稿/topic → scenes.json + L2-spec [CG0, with G0a+G0b for topic entry]
 │   │   ├── visual-designer/           #   Scene → HTML slides [CG1 Visual Direction Gate]
 │   │   ├── tts-engine/                #   TTS → audio/ + subtitles.json [CG2 Voice Direction Gate - NOT skippable]
 │   │   └── video-compositor/          #   Compositing → final video [CG3 Final Review Gate]
