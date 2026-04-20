@@ -14,7 +14,7 @@ from _utils.exit_check_base import add_issue, print_and_exit
 SCENES_PATH = Path("scenes.json")
 AUDIO_DIR = Path("audio")
 SUBTITLES_PATH = Path("subtitles.json")
-SPEC_PATH = Path(".claude/state/L2-spec.md")
+SPEC_PATH = Path(".claude/state/L2-content-spec.md")
 
 
 def check():

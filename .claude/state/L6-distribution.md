@@ -1,6 +1,6 @@
 # Distribution Plan: {Video Title}
 
-## Platform & Timing
+## Platform Strategy
 | Platform | Optimal Time | Account |
 |----------|-------------|---------|
 | {平台1，如抖音} | {最佳发布时间} | {账号} |
@@ -10,11 +10,11 @@
 - **Description**: {视频描述模板}
 - **Tags**: {标签列表，逗号分隔}
 
-## Tracking
+## UTM Tracking
 - **UTM Parameter**: {UTM 追踪链接}
 - **KPI Tracking**: {KPI 监控方式}
 
-## Compliance
+## Compliance Checklist
 - **Music License**: {音乐版权信息}
 - **Image Rights**: {图片版权信息}
 - **Content Rating**: {内容分级}

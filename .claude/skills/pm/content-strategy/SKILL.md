@@ -156,6 +156,6 @@ Then proceed to `content/script-writer` (CG1).
 ## References
 
 - Related skills: content/script-writer (CG1), pm/content-validation (CG5)
-- Downstream: L0-strategy.md feeds into L2-spec (content spec)
+- Downstream: L0-strategy.md feeds into L2-content-spec.md
 - PM Gate: CG0 — PM Content Strategy Gate
 - Framework sources: discovery-interview-prep, positioning-workshop (Product-Manager-Skills)

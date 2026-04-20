@@ -14,7 +14,7 @@ from _utils.exit_check_base import add_issue, print_and_exit
 PROJECT_ROOT = Path(".")
 STATE_DIR = PROJECT_ROOT / ".claude" / "state"
 L0_STRATEGY = STATE_DIR / "L0-strategy.md"
-L5_VALIDATION = STATE_DIR / "L5-validation.md"
+L5_VALIDATION = STATE_DIR / "L5-content-validation.md"
 L6_DISTRIBUTION = STATE_DIR / "L6-distribution.md"
 
 
@@ -22,7 +22,7 @@ def check_l5_exists():
     if not L5_VALIDATION.exists():
         add_issue(
             "file_missing",
-            "L5-validation.md does not exist — create content validation report",
+            "L5-content-validation.md does not exist — create content validation report",
             level="high",
         )
         return False
@@ -46,7 +46,7 @@ def check_required_sections():
         if section not in content:
             add_issue(
                 code,
-                f"L5-validation.md missing required section: {section}",
+                f"L5-content-validation.md missing required section: {section}",
                 level="high",
             )
 

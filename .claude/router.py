@@ -5,6 +5,7 @@ Supports three-domain routing: dev/, content/, and pm/
 """
 
 import argparse
+import re
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -205,14 +206,24 @@ def route(query: str, domain: Optional[str] = None) -> List[str]:
 
     Args:
         query: User intent description
-        domain: Optional domain filter ('dev' or 'content')
+        domain: Optional domain filter ('dev', 'content', or 'pm')
     """
     query_lower = query.lower()
+    # Tokenize query for exact-word matching bonus
+    query_tokens = set(re.findall(r"[a-z0-9\u4e00-\u9fff]+", query_lower))
     scores = []
     for skill in SKILL_INDEX:
         if domain and skill["domain"] != domain:
             continue
-        score = sum(1 for t in skill["triggers"] if t.lower() in query_lower)
+        score = 0
+        for t in skill["triggers"]:
+            t_lower = t.lower()
+            if t_lower in query_lower:
+                # Base score for substring match
+                score += 1
+                # Bonus for exact token match (reduces false positives)
+                if t_lower in query_tokens:
+                    score += 1
         if score > 0:
             scores.append((score, skill["name"], skill["domain"]))
     scores.sort(reverse=True)

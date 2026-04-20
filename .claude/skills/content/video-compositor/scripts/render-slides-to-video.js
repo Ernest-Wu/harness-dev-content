@@ -21,7 +21,7 @@
  *   --quality cinematic (crf=18, slow, 256k AAC, PNG lossless)
  */
 
-const puppeteer = require("/Users/wuzhijing/.nvm/versions/node/v22.22.0/lib/node_modules/puppeteer");
+const puppeteer = require("puppeteer");
 const chromium = puppeteer;
 const { spawn } = require("child_process");
 const path = require("path");

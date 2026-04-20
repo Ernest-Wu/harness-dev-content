@@ -3,8 +3,6 @@
 # Runs exit-checks for content domain skills
 # Called by Orchestrator at content pipeline gate points
 
-set -e
-
 SKILLS_DIR="$(dirname "$0")/../skills/content"
 
 echo "🔍 Content Validator Hook"
@@ -25,14 +23,12 @@ if [ ! -f "$EXIT_CHECK" ]; then
 fi
 
 echo "Running exit check for: content/$SKILL"
-python3 "$EXIT_CHECK"
-EXIT_CODE=$?
-
-if [ $EXIT_CODE -eq 0 ]; then
+if python3 "$EXIT_CHECK"; then
     echo "✅ content/$SKILL passed exit check"
+    exit 0
 else
+    EXIT_CODE=$?
     echo "❌ content/$SKILL failed exit check (exit code: $EXIT_CODE)"
     echo "   Fix the issues above before proceeding."
+    exit $EXIT_CODE
 fi
-
-exit $EXIT_CODE

@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from _utils.exit_check_base import add_issue, print_and_exit
 
 SCENES_PATH = Path("scenes.json")
-SPEC_PATH = Path(".claude/state/L2-spec.md")
+SPEC_PATH = Path(".claude/state/L2-content-spec.md")
 BASE_VIDEO_PATH = Path("base-video.mp4")
 FINAL_VIDEO_PATH = Path("final-video.mp4")
 
@@ -30,7 +30,7 @@ MIN_FPS = 24
 
 
 def get_platform() -> str:
-    """Extract platform from L2-spec.md."""
+    """Extract platform from L2-content-spec.md."""
     if not SPEC_PATH.exists():
         return "16:9"  # Default
     content = SPEC_PATH.read_text(encoding="utf-8").lower()

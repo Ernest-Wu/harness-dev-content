@@ -7,6 +7,7 @@ Deterministic gate before a Task can be considered complete.
 import subprocess
 import sys
 from pathlib import Path
+from shutil import which as shutil_which
 from typing import List, Optional
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -17,7 +18,7 @@ BUILD_COMMANDS = [
     ["npm", "run", "build"],
     ["pnpm", "build"],
     ["yarn", "build"],
-    ["python", "-m", "compileall", "src/"],
+    ["python", "-m", "compileall", "."],
     ["cargo", "build"],
     ["go", "build", "./..."],
 ]
@@ -33,7 +34,7 @@ TEST_COMMANDS = [
 
 def detect_command(candidates: List[List[str]]) -> Optional[List[str]]:
     for cmd in candidates:
-        if which(cmd[0]):
+        if shutil_which(cmd[0]):
             # Quick heuristic: npm needs package.json
             if (
                 cmd[0] in ("npm", "pnpm", "yarn")
@@ -44,6 +45,17 @@ def detect_command(candidates: List[List[str]]) -> Optional[List[str]]:
                 continue
             if cmd[0] == "go" and not list(PROJECT_ROOT.glob("go.mod")):
                 continue
+            # Python build: needs pyproject.toml, setup.py, setup.cfg, or src/ or root .py files
+            if cmd[0] == "python":
+                has_py_project = (
+                    (PROJECT_ROOT / "pyproject.toml").exists()
+                    or (PROJECT_ROOT / "setup.py").exists()
+                    or (PROJECT_ROOT / "setup.cfg").exists()
+                    or (PROJECT_ROOT / "src").is_dir()
+                    or any(PROJECT_ROOT.glob("*.py"))
+                )
+                if not has_py_project:
+                    continue
             if (
                 cmd[0] == "pytest"
                 and not list(PROJECT_ROOT.rglob("*_test.py"))
@@ -54,10 +66,6 @@ def detect_command(candidates: List[List[str]]) -> Optional[List[str]]:
     return None
 
 
-def which(program: str) -> bool:
-    return subprocess.run(["which", program], capture_output=True).returncode == 0
-
-
 def run_cmd(cmd: list[str], label: str) -> bool:
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
@@ -66,11 +74,16 @@ def run_cmd(cmd: list[str], label: str) -> bool:
                 f"{label}_failed",
                 f"'{' '.join(cmd)}' failed with exit code {result.returncode}.\n"
                 f"stdout: {result.stdout[-500:]}\nstderr: {result.stderr[-500:]}",
+                level="high",
             )
             return False
         return True
     except Exception as e:
-        add_issue(f"{label}_error", f"Error running '{' '.join(cmd)}': {e}")
+        add_issue(
+            f"{label}_error",
+            f"Error running '{' '.join(cmd)}': {e}",
+            level="high",
+        )
         return False
 
 
@@ -83,6 +96,7 @@ def check():
         add_issue(
             "build_command_not_found",
             "No recognizable build command found. Add one to BUILD_COMMANDS in exit-check.py.",
+            level="high",
         )
 
     # 2. Test check (warn if no tests found, but don't block)
@@ -93,6 +107,7 @@ def check():
         add_issue(
             "test_command_not_found",
             "No recognizable test command found. If this project has tests, add the command to TEST_COMMANDS.",
+            level="warning",
         )
 
     # 3. Ensure task-history.yaml exists and was updated recently
@@ -101,6 +116,7 @@ def check():
         add_issue(
             "task_history_missing",
             ".claude/state/task-history.yaml does not exist. Every completed Task must be recorded.",
+            level="high",
         )
     else:
         content = history_path.read_text(encoding="utf-8")
@@ -108,6 +124,7 @@ def check():
             add_issue(
                 "task_history_empty",
                 "task-history.yaml exists but contains no 'completed' entries. Record this Task before finishing.",
+                level="high",
             )
 
 

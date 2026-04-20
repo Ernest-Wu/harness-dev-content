@@ -44,10 +44,13 @@ STATE_FILES = [
     "L0-strategy.md",
     "L1-summary.md",
     "L2-spec.md",
+    "L2-content-spec.md",
     "L3-design.md",
     "L4-plan.md",
     "L5-media.md",
+    "L5-content-validation.md",
     "L6-distribution.md",
+    "task-history.yaml",
 ]
 
 DOC_FILES = [
@@ -55,6 +58,7 @@ DOC_FILES = [
     "docs/HARNESS-ARCHITECTURE.md",
     "docs/EVOLUTION-PROTOCOL.md",
     "docs/CONTENT-PIPELINE.md",
+    "docs/FIGMA_MCP_SETUP.md",
 ]
 
 
@@ -118,7 +122,13 @@ def check_skills():
 
 def check_hooks():
     hooks_dir = ROOT / "hooks"
-    expected = ["pre-commit-check.sh", "stop-gate.sh", "content-validator.sh"]
+    expected = [
+        "pre-commit-check.sh",
+        "stop-gate.sh",
+        "content-validator.sh",
+        "detect-feedback-signal.py",
+        "mark-review-needed.sh",
+    ]
     for name in expected:
         if not (hooks_dir / name).exists():
             ISSUES.append(("hook_missing", f"{hooks_dir / name} not found"))

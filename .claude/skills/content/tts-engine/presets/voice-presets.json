@@ -47,6 +47,46 @@
       "voice": "XiaohanNeural",
       "speedAdjustment": -10,
       "language": "zh-CN"
+    },
+    {
+      "id": "sales-female",
+      "label": "激情带货-女",
+      "description": "高能量带货",
+      "voice": "XiaoyiNeural",
+      "speedAdjustment": 10,
+      "language": "zh-CN"
+    },
+    {
+      "id": "sales-male",
+      "label": "激情带货-男",
+      "description": "高能量带货",
+      "voice": "YunxiNeural",
+      "speedAdjustment": 15,
+      "language": "zh-CN"
+    },
+    {
+      "id": "种草-female",
+      "label": "温柔种草-女",
+      "description": "亲切种草",
+      "voice": "XiaoshuangNeural",
+      "speedAdjustment": 0,
+      "language": "zh-CN"
+    },
+    {
+      "id": "deep-male",
+      "label": "深度讲解-男",
+      "description": "沉稳深度",
+      "voice": "YunhaoNeural",
+      "speedAdjustment": -5,
+      "language": "zh-CN"
+    },
+    {
+      "id": "fast-male",
+      "label": "快节奏资讯-男",
+      "description": "快节奏新闻",
+      "voice": "YunjianNeural",
+      "speedAdjustment": 15,
+      "language": "zh-CN"
     }
   ]
 }

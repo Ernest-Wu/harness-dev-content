@@ -1,7 +1,7 @@
 ---
 name: script-writer
-description: 将 Markdown 口播文稿或 topic/关键词转化为结构化场景拆分（scenes.json）和内容规格（L2-spec.md）。支持从 topic 自动研究选题并生成口播稿。口播视频生产线的起点。
-intent: 双入口 Skill：入口 A 负责语义段落切分、平台选择、Mood 选择、visualBeats 标记；入口 B 负责从 topic 做深度研究、选题判断、生成口播稿。输出结构化的 scenes.json 和 L2-spec.md 供下游 visual-designer 使用。
+description: 将 Markdown 口播文稿或 topic/关键词转化为结构化场景拆分（scenes.json）和内容规格（L2-content-spec.md）。支持从 topic 自动研究选题并生成口播稿。口播视频生产线的起点。
+intent: 双入口 Skill：入口 A 负责语义段落切分、平台选择、Mood 选择、visualBeats 标记；入口 B 负责从 topic 做深度研究、选题判断、生成口播稿。输出结构化的 scenes.json 和 L2-content-spec.md 供下游 visual-designer 使用。
 type: component
 ---
 
@@ -9,7 +9,7 @@ type: component
 
 ## Purpose
 
-将 Markdown 口播文稿或主题描述转化为结构化的场景拆分（scenes.json）和内容规格（L2-spec.md），为后续视觉设计和视频合成提供可验证的输入。
+将 Markdown 口播文稿或主题描述转化为结构化的场景拆分（scenes.json）和内容规格（L2-content-spec.md），为后续视觉设计和视频合成提供可验证的输入。
 
 支持两类输入起点：
 - **已有口播文稿**：直接解析、拆分、标注 visualBeats
@@ -69,7 +69,7 @@ script-writer 接受两类输入：
 
 如果用户已提供这些信息，确认即可。如果未提供，使用推荐默认值（9:16, Excited, 60-90秒）并请用户确认。
 
-将确认结果写入 `state/L2-spec.md` 的头部 metadata。
+将确认结果写入 `state/L2-content-spec.md` 的头部 metadata。
 
 #### 步骤 2：解析文稿为场景
 
@@ -93,7 +93,7 @@ script-writer 接受两类输入：
 
 #### 步骤 4：更新状态文件
 
-将内容规格写入 `state/L2-spec.md`，格式如下：
+将内容规格写入 `state/L2-content-spec.md`，格式如下：
 
 ```markdown
 # Content Spec
@@ -165,7 +165,7 @@ python3 .claude/skills/content/script-writer/exit-check.py
 - `use recommended` — 采用全部推荐
 - 或调整任意类别
 
-用户确认后，将平台和 Mood 写入 `state/L2-spec.md` 的 Metadata。
+用户确认后，将平台和 Mood 写入 `state/L2-content-spec.md` 的 Metadata。
 
 #### 前置步骤 3：生成 draft-script.md
 
@@ -176,7 +176,7 @@ python3 .claude/skills/content/script-writer/exit-check.py
    - 按默认结构组织：Hook → Core claim → Reasoning beats → Turn/Contrast → Closing line
 3. **输出 `draft-script.md`**（放在项目根目录，与 `scenes.json` 同级）
 
-> 注意：`draft-script.md` 为临时中间产物，场景拆分完成后由 `scenes.json` 和 `L2-spec.md` 取代其角色。但 exit-check 会验证其存在性，确保 Entry B 的研究生成步骤确实执行过。
+> 注意：`draft-script.md` 为临时中间产物，场景拆分完成后由 `scenes.json` 和 `L2-content-spec.md` 取代其角色。但 exit-check 会验证其存在性，确保 Entry B 的研究生成步骤确实执行过。
 
 #### 汇合到入口 A
 
@@ -221,11 +221,11 @@ python3 .claude/skills/content/script-writer/exit-check.py
 1. **场景太碎**：2-3秒一个场景会导致视觉跳跃。每个场景至少 8-15 秒。
 2. **遗漏 visualBeats**：即使不确定视觉细节，也要标记关键节奏点。这为 visual-designer 提供了锚点。
 3. **跳过 Creative Gate**：平台/风格选择影响所有下游 Skill。不确认就继续是最大的质量风险。
-4. **L2-spec 太长**：保持在 2000 tokens 以内。详尽信息在 scenes.json，不在状态文件里。
+4. **L2-content-spec 太长**：保持在 2000 tokens 以内。详尽信息在 scenes.json，不在状态文件里。
 5. **研究变成资料堆砌**：research 的目标不是写成行业报告，而是帮助选题判断。只保留对内容策略有帮助的研究点。
 6. **跳过阶段一 checkpoint**：不要从 topic 直接跳到成稿。用户必须在 3 个深展开方向中做选择。
 7. **角度压扁成近义改写**：原观点、延展观点、对立观点必须代表真正不同的内容路径，不能只是换标题。
-8. **表达风格与 Mood 混淆**：Mood 决定视觉基调（配色、氛围），表达风格决定口播语言风格。两者都要写入 L2-spec.md，但它们是两个独立维度。
+8. **表达风格与 Mood 混淆**：Mood 决定视觉基调（配色、氛围），表达风格决定口播语言风格。两者都要写入 L2-content-spec.md，但它们是两个独立维度。
 
 ## Exit-Check Criteria
 
@@ -234,13 +234,13 @@ python3 .claude/skills/content/script-writer/exit-check.py
 2. 每个场景有 `id`、`text`、`estimatedDuration`
 3. 场景数量在 2-15 之间
 4. `visualBeats` 数组存在（可以为空数组）
-5. `state/L2-spec.md` 存在且包含 Platform 和 Mood 元数据
-6. 如果 `L2-spec.md` 的 Source 标注 `Input: topic`，则 `draft-script.md` 必须存在且非空
+5. `state/L2-content-spec.md` 存在且包含 Platform 和 Mood 元数据
+6. 如果 `L2-content-spec.md` 的 Source 标注 `Input: topic`，则 `draft-script.md` 必须存在且非空
 
 ## References
 
 - 下游 Skill: `content/visual-designer`
-- 状态管理: `.claude/state/L2-spec.md`
+- 状态管理: `.claude/state/L2-content-spec.md`
 - 研究框架: `references/research-framework.md`
 - 选题输出格式: `references/topic-output-format.md`
 - 参数推荐: `references/script-generation-checkpoints.md`

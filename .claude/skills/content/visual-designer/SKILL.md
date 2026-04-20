@@ -35,7 +35,7 @@ type: interactive
 
 确认以下文件存在且通过 exit-check：
 1. `scenes.json` — 结构化的场景数据
-2. `.claude/state/L2-spec.md` — 包含 Platform 和 Mood 元数据
+2. `.claude/state/L2-content-spec.md` — 包含 Platform 和 Mood 元数据
 
 ### 步骤 1：Creative Gate G2a — 图片策略确认
 
@@ -47,7 +47,7 @@ type: interactive
 ### 步骤 2：Creative Gate G2b — Mood + Style Preview
 
 调用 `frontend-slides` 技能的 Mood Selection 流程：
-1. 根据 L2-spec.md 的 Mood 设置，让 frontend-slides 生成 3 个 Style Previews
+1. 根据 L2-content-spec.md 的 Mood 设置，让 frontend-slides 生成 3 个 Style Previews
 2. 等待用户选择风格方案
 3. 记录选择结果到 `state/L3-design.md`
 
@@ -66,7 +66,7 @@ type: interactive
 ### 步骤 5：后处理 — 注入 video-specific 属性
 
 frontend-slides 生成的 HTML 需要后续注入：
-1. **平台覆盖 CSS**：根据 L2-spec.md 的 Platform，在 `<head>` 中添加 platform-override CSS 变量
+1. **平台覆盖 CSS**：根据 L2-content-spec.md 的 Platform，在 `<head>` 中添加 platform-override CSS 变量
 2. **Beat 属性**：在每个需要的时间点元素上添加 `data-beat-at` 属性
 3. **三分之一字幕区**：注入 lower-thirds CSS 样式（如果 scenes.json 中有字幕需求）
 4. **动画预设**：注入 transition 和 animation CSS
@@ -146,6 +146,6 @@ python3 .claude/skills/content/visual-designer/exit-check.py
 - 上游 Skill: `content/script-writer`
 - 委托 Skill: `frontend-slides`（Harness 内部 Skill，位于 `.claude/skills/content/frontend-slides/`）
 - 下游 Skill: `content/tts-engine`
-- 状态管理: `.claude/state/L2-spec.md`, `.claude/state/L3-design.md`
+- 状态管理: `.claude/state/L2-content-spec.md`, `.claude/state/L3-design.md`
 - 模板目录: `templates/`（platform-overrides, visual-beats, scene-layouts, lower-thirds, animation-presets, slide-presets）
 - 迁移来源: self-media-video G2 + G3

@@ -15,9 +15,31 @@ Usage in any exit-check.py:
     print_and_exit()
 """
 
+import os
 import sys
+from pathlib import Path
 
 ISSUES = []
+
+
+def ensure_project_root() -> Path:
+    """Verify that the script is run from the project root.
+
+    Looks for .claude/state/ or .claude/skills/ to confirm cwd is correct.
+    Returns the project root Path if valid.
+
+    Raises:
+        SystemExit: If not run from project root.
+    """
+    cwd = Path.cwd()
+    if not (cwd / ".claude" / "state").exists() and not (cwd / ".claude" / "skills").exists():
+        print(
+            f"❌ Exit check must be run from the project root (where .claude/ exists).\n"
+            f"   Current directory: {cwd}\n"
+            f"   Try: cd /path/to/project && python3 {sys.argv[0]}"
+        )
+        sys.exit(1)
+    return cwd
 _VALID_LEVELS = frozenset({"high", "warning", "info"})
 
 

@@ -15,7 +15,7 @@ def main() -> int:
     text = sys.stdin.read().lower()
     if any(s in text for s in SIGNALS):
         print("📝 Feedback signal detected. Consider recording this correction.")
-        return 0
+        return 1
     return 0
 
 

@@ -43,7 +43,7 @@ video-compositor 使用 Remotion 将 HTML 转化为视频帧。project-template 
 
 1. 从 project-template 复制 Remotion 项目结构
 2. 配置项目参数：
-   - 目标分辨率（从 L2-spec.md 的 Platform 读取）
+   - 目标分辨率（从 L2-content-spec.md 的 Platform 读取）
    - 帧率：30fps（默认）
    - 场景切换效果配置
 
@@ -55,20 +55,27 @@ video-compositor 使用 Remotion 将 HTML 转化为视频帧。project-template 
 3. 字幕从 subtitles.json 加载到 `<Subtitles>` 组件
 4. Ken Burns 效果应用于需要强调的场景
 
-### 步骤 3：渲染基础视频
+### 步骤 3：两段式渲染
+
+**Step 3a：生成基础视频（Playwright + ffmpeg）**
 
 ```bash
-npx remotion render src/index.ts base-video --output=base-video.mp4
+cd project-template
+npx tsx scripts/render-base-video.ts --scenes ../scenes.json --html ../slides-preview.html --output ../base-video.mp4
 ```
 
-基础视频仅包含幻灯片动画和视觉效果，不包含音频。
+此步骤使用 Playwright 逐帧截屏 slides-preview.html，并通过 ffmpeg 合成为基础视频。基础视频仅包含幻灯片动画和视觉效果，不包含音频。
 
-### 步骤 4：合成最终视频
+**Step 3b：Remotion 合成最终视频**
 
-将基础视频与 TTS 音频合成：
 ```bash
-ffmpeg -i base-video.mp4 -i audio/concatenated.mp3 -c:v copy -c:a aac -shortest final-video.mp4
+cd project-template
+npm run build
+# 或直接使用 Remotion CLI
+npx remotion render src/index.tsx base-video --output ../final-video.mp4
 ```
+
+此步骤使用 Remotion 将基础视频、字幕 overlay、Beat 效果等合成为最终视频。
 
 ### 步骤 5：更新状态文件
 
@@ -113,7 +120,7 @@ python3 .claude/skills/content/video-compositor/exit-check.py
 ## References
 
 - 上游 Skills: `content/visual-designer`, `content/tts-engine`
-- 状态管理: `.claude/state/L2-spec.md`, `.claude/state/L5-media.md`
+- 状态管理: `.claude/state/L2-content-spec.md`, `.claude/state/L5-media.md`
 - 项目模板: `project-template/`（Remotion 项目结构）
 - 脚本目录: `scripts/`（render-slides-to-video 等）
 - 迁移来源: self-media-video G4b

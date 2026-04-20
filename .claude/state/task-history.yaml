@@ -1,0 +1,10 @@
+# Task History
+# This file tracks completed tasks and their outcomes for the current project session.
+# Format: each entry is a YAML document separated by '---'
+
+# Example:
+# - task: "Implement login page"
+#   skill: dev-builder
+#   status: completed
+#   output: "Login page implemented and passing exit-check"
+#   timestamp: "2026-04-19T10:00:00"

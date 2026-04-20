@@ -20,8 +20,10 @@ Hard Gate levels:
 """
 
 import re
+import subprocess
 import sys
 from pathlib import Path
+from shutil import which as shutil_which
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from _utils.exit_check_base import add_issue, print_and_exit
@@ -87,7 +89,12 @@ def check():
         )
 
     # ──────────────────────────────────────────
-    # 2. Rollback Plan — Must exist and be confirmed
+    # 2. Smoke Test — Auto-detect and run
+    # ──────────────────────────────────────────
+    check_smoke_test()
+
+    # ──────────────────────────────────────────
+    # 3. Rollback Plan — Must exist and be confirmed
     # ──────────────────────────────────────────
     rollback_doc = PROJECT_ROOT / "ROLLBACK.md"
     l4_plan = STATE_DIR / "L4-plan.md"
@@ -122,7 +129,7 @@ def check():
         )
 
     # ──────────────────────────────────────────
-    # 3. Task History — All phases should be complete
+    # 4. Task History — All phases should be complete
     # ──────────────────────────────────────────
     task_history = STATE_DIR / "task-history.yaml"
     if task_history.exists():
@@ -153,7 +160,7 @@ def check():
         )
 
     # ──────────────────────────────────────────
-    # 4. Design Brief — Visual authority chain must exist
+    # 5. Design Brief — Visual authority chain must exist
     # ──────────────────────────────────────────
     l3_design = STATE_DIR / "L3-design.md"
     if not l3_design.exists():
@@ -174,7 +181,7 @@ def check():
             )
 
     # ──────────────────────────────────────────
-    # 5. Dev Plan — Phase structure must exist
+    # 6. Dev Plan — Phase structure must exist
     # ──────────────────────────────────────────
     if l4_plan.exists():
         plan_content = l4_plan.read_text(encoding="utf-8")
@@ -201,7 +208,7 @@ def check():
             level="warning",
         )
 
-    # ── 6. Release Notes ─────────────────────────────────────────────
+    # ── 7. Release Notes ─────────────────────────────────────────────
     release_notes = PROJECT_ROOT / "RELEASE-NOTES.md"
     if release_notes.exists():
         add_issue(
@@ -213,6 +220,78 @@ def check():
         add_issue(
             "no_release_notes",
             "No RELEASE-NOTES.md found. Document what changed in this release.",
+            level="warning",
+        )
+
+
+def check_smoke_test():
+    """Auto-detect project type and run a minimal smoke test."""
+    smoke_passed = False
+    smoke_cmd = None
+
+    # Detect project type and choose smoke command
+    if (PROJECT_ROOT / "package.json").exists():
+        if shutil_which("npm"):
+            smoke_cmd = ["npm", "run", "test", "--", "--run"]
+            # Fallback: try 'npm test' if '--run' not supported
+    elif (PROJECT_ROOT / "Cargo.toml").exists():
+        if shutil_which("cargo"):
+            smoke_cmd = ["cargo", "test", "--", "--test-threads=1"]
+    elif list(PROJECT_ROOT.glob("go.mod")):
+        if shutil_which("go"):
+            smoke_cmd = ["go", "test", "-short", "./..."]
+    elif (
+        (PROJECT_ROOT / "pyproject.toml").exists()
+        or (PROJECT_ROOT / "setup.py").exists()
+        or (PROJECT_ROOT / "setup.cfg").exists()
+        or any(PROJECT_ROOT.glob("*.py"))
+    ):
+        if shutil_which("pytest"):
+            smoke_cmd = ["pytest", "-x", "-q"]
+        elif shutil_which("python"):
+            smoke_cmd = ["python", "-m", "compileall", "."]
+
+    if smoke_cmd:
+        try:
+            result = subprocess.run(
+                smoke_cmd,
+                capture_output=True,
+                text=True,
+                timeout=300,
+            )
+            if result.returncode == 0:
+                smoke_passed = True
+                add_issue(
+                    "smoke_test_passed",
+                    f"Smoke test passed: {' '.join(smoke_cmd)}",
+                    level="info",
+                )
+            elif result.returncode == 5 and "no tests ran" in result.stdout.lower():
+                # pytest exit code 5 = no tests collected — not a release blocker
+                add_issue(
+                    "smoke_test_no_tests",
+                    f"No tests found to run ({' '.join(smoke_cmd)}). "
+                    f"Consider adding tests for critical paths before release.",
+                    level="warning",
+                )
+            else:
+                add_issue(
+                    "smoke_test_failed",
+                    f"Smoke test failed: {' '.join(smoke_cmd)}\n"
+                    f"stdout: {result.stdout[-300:]}\nstderr: {result.stderr[-300:]}",
+                    level="high",
+                )
+        except Exception as e:
+            add_issue(
+                "smoke_test_error",
+                f"Error running smoke test {' '.join(smoke_cmd)}: {e}",
+                level="high",
+            )
+    else:
+        add_issue(
+            "smoke_test_not_detected",
+            "Could not auto-detect project type for smoke test. "
+            "Verify manually that the application starts and critical paths work.",
             level="warning",
         )
 

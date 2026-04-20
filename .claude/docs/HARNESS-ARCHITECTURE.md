@@ -94,17 +94,24 @@ Vibe Coding 的困境不是模型不够聪明，而是**模型周围没有系统
 
 ---
 
-## 状态管理：分层上下文 (L1-L4)
+## 状态管理：分层上下文 (L0-L6)
 
 为了解决 Context Firewall 的"失忆"问题，我们设计了分层上下文：
 
-| 层级 | 文件 | 大小控制 | 传递策略 |
-|------|------|----------|----------|
-| L1 | `state/L1-summary.md` | < 300 tokens | **每个 Task 必带** |
-| L2 | `state/L2-spec.md` | < 2000 tokens | 按需引用，首 Task 必读 |
-| L3 | `state/L3-design.md` | < 1500 tokens | 设计相关 Task 必读 |
-| L4 | `state/L4-plan.md` | < 1000 tokens | 每个 Phase 启动时必读 |
-| Task History | `state/task-history.yaml` | < 500 tokens | 只读索引，不传递细节 |
+| 层级 | 文件 | 大小控制 | 传递策略 | 所属轨道 |
+|------|------|----------|----------|----------|
+| L0 | `state/L0-strategy.md` | < 500 tokens | 内容生产起点必读 | content / pm |
+| L1 | `state/L1-summary.md` | < 300 tokens | **每个 Task 必带** | 通用 |
+| L2 | `state/L2-spec.md` / `state/L2-content-spec.md` | < 2000 tokens | 按需引用，首 Task 必读 | dev / content |
+| L3 | `state/L3-design.md` | < 1500 tokens | 设计相关 Task 必读 | 通用 |
+| L4 | `state/L4-plan.md` | < 1000 tokens | 每个 Phase 启动时必读 | 通用 |
+| L5 | `state/L5-media.md` / `state/L5-content-validation.md` | < 1000 tokens | 媒体/验证阶段必读 | content / pm |
+| L6 | `state/L6-distribution.md` | < 800 tokens | 分发前必读 | content / pm |
+| Task History | `state/task-history.yaml` | < 500 tokens | 只读索引，不传递细节 | 通用 |
+
+**L0 策略层**（Content Strategy）：定义内容生产的战略基础——目标受众、业务目标、KPI、差异化策略。由 `pm/content-strategy` (CG0) 产出，供 content 轨道全链路引用。
+
+**L6 分发层**（Distribution）：定义内容发布后的分发计划——平台选择、发布时间、UTM 追踪、合规检查。由 `pm/distribution-planner` (CG4) 产出，供 `pm/content-validation` (CG5) 验证时引用。
 
 **L1 摘要模板**包含：
 - 项目一句话目标

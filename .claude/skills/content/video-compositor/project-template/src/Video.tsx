@@ -80,7 +80,8 @@ export const Video: React.FC<VideoProps> = ({ scenes, platform = "bilibili" }) =
 
               {index < scenes.length - 1 && (
                 <TransitionSeries.Transition
-                  {...(getTransitionForScenes(scene, scenes[index + 1]) as any)}
+                  presentation={getTransitionForScenes(scene, scenes[index + 1]).presentation}
+                  timing={getTransitionForScenes(scene, scenes[index + 1]).timing}
                 />
               )}
             </React.Fragment>

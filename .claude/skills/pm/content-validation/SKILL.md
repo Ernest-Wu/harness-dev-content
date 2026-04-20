@@ -85,7 +85,7 @@ Validation findings that repeat 5+ times should feed back into the Steering Loop
 
 ### Output Format
 
-Write to `.claude/state/L5-validation.md` (appended or overwritten):
+Write to `.claude/state/L5-content-validation.md` (appended or overwritten):
 
 ```markdown
 # Content Validation Report: {Content Title}
