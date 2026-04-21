@@ -17,14 +17,15 @@
 ## M5: 工程化基座（P0 — 让 exit-check 代码质量可维护）
 
 **目标**: 统一 exit-check 代码规范，增强 check-harness.py 的深度检查能力，为后续迭代建立工程基线
-**状态**: ⬜ 未开始
+**状态**: ✅ 已完成
+**完成日期**: 2026-04-20
 **前置条件**: M4 完成
 **详细设计**: 参见 `docs/OPTIMIZATION-ROADMAP.md` Phase 1
 
 | # | 任务 | 修改文件 | 验收标准 | 状态 |
 |---|------|---------|---------|------|
-| 5.1 | exit-check 代码质量标准化 | 全部 17 个 `exit-check.py` | 所有 `add_issue` 显式声明 `level=`；`ensure_project_root()` 被调用；check-harness.py AST 检查强制 level 显式 | ⬜ |
-| 5.2 | check-harness.py 深度检查增强 | `.claude/check-harness.py` | 新增 `check_skill_coverage`（SKILL.md Exit-Check Criteria vs exit-check.py add_issue code 对齐）；`check_print_and_exit`（AST 确认 print_and_exit 被调用）；`check_state_cross_reference`（L2 Business Goal 与 L4 Business Goal 一致性） | ⬜ |
+| 5.1 | exit-check 代码质量标准化 | 全部 17 个 `exit-check.py` | 所有 `add_issue` 显式声明 `level=`；`ensure_project_root()` 被调用；check-harness.py AST 检查强制 level 显式 | ✅ |
+| 5.2 | check-harness.py 深度检查增强 | `.claude/check-harness.py` | 新增 `check_skill_coverage`（SKILL.md Exit-Check Criteria vs exit-check.py add_issue code 对齐）；`check_print_and_exit`（AST 确认 print_and_exit 被调用）；`check_state_cross_reference`（L2 Business Goal 与 L4 Business Goal 一致性） | ✅ |
 
 **M5 完成标志**: 修改任何一个 exit-check 后，check-harness.py 能检测出 level 缺失、print_and_exit 遗漏、skill coverage 不匹配等问题。
 
@@ -51,18 +52,19 @@
 ## M7: 可观测性与开发者体验（P2 — 让 harness 使用者看得见进度）
 
 **目标**: 降低 Orchestrator 和用户的认知负担，让项目状态一目了然
-**状态**: ⬜ 未开始
+**状态**: ✅ 已完成
+**完成日期**: 2026-04-21
 **前置条件**: M6 完成
 **详细设计**: 参见 `docs/OPTIMIZATION-ROADMAP.md` Phase 2（剩余部分）+ Phase 3（剩余部分）
 
 | # | 任务 | 修改文件 | 验收标准 | 状态 |
 |---|------|---------|---------|------|
-| 7.1 | exit-check 单元测试框架 | 新增 `tests/` 或 `.claude/skills/_utils/test_exit_checks.py` | 为至少 5 个核心 exit-check（release-builder, code-review, script-writer, product-spec-builder, content-strategy）提供 mock state 测试；运行时间 < 5 秒 | ⬜ |
-| 7.2 | Task Package 自动化生成器 | 新增 `.claude/package-task.py` | CLI: `--skill`, `--phase`, `--task`；自动读取 L1-L4 state 文件和 SKILL.md；输出填充好的 Task Package Markdown | ⬜ |
-| 7.3 | 当前进度仪表盘 | 新增 `.claude/status-board.py` | 读取全部 state 文件；输出 dev/content track 的 Gate 通过状态、当前活跃 Phase、阻塞项 | ⬜ |
-| 7.4 | Steering Loop 端到端测试 | 新增 `.claude/hooks/test-steering-loop.sh` | 模拟 3 次同类反馈 → feedback-analyzer 检测毕业 → evolution-runner 生成提案 → 人类确认 → 应用到 SKILL.md | ⬜ |
+| 7.1 | exit-check 单元测试框架 | 新增 `tests/` | 为 5 个核心 exit-check 提供 mock state 测试；运行时间 < 5 秒 | ✅ |
+| 7.2 | Task Package 自动化生成器 | 新增 `.claude/package-task.py` | CLI: `--skill`, `--phase`, `--task`；自动读取 L1-L4 state 文件和 SKILL.md；输出填充好的 Task Package Markdown | ✅ |
+| 7.3 | 当前进度仪表盘 | 新增 `.claude/status-board.py` | 读取全部 state 文件；输出 dev/content/pm track 的 Gate 通过状态、当前活跃 Phase、阻塞项 | ✅ |
+| 7.4 | Steering Loop 端到端测试 | 新增 `.claude/hooks/test-steering-loop.sh` | 模拟 3 次同类反馈 → feedback-analyzer 检测毕业 → evolution-runner 生成提案 → 人类确认 → 应用到 SKILL.md | ✅ |
 
-**M7 完成标志**: 新用户可以在 30 秒内通过 `status-board.py` 了解项目全局状态；修改 exit-check 后可以在 10 秒内通过单元测试验证正确性。
+**M7 完成标志**: ✅ 新用户可以在 30 秒内通过 `status-board.py` 了解项目全局状态；修改 exit-check 后可以在 10 秒内通过单元测试验证正确性。
 
 ---
 

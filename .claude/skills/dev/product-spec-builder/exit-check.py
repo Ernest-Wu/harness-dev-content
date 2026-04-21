@@ -128,7 +128,7 @@ def extract_keywords(text: str) -> set[str]:
     """Extract meaningful keywords from text (English words + Chinese chars)."""
     words = re.findall(r"[a-zA-Z]{2,}", text.lower())
     chars = re.findall(r"[\u4e00-\u9fff]{2,}", text)
-    return ((set(words) | set(chars)) - STOPWORDS) | EXTRA_SHORT
+    return (set(words) | set(chars)) - STOPWORDS
 
 
 def extract_section_content(text: str, heading: str) -> str:

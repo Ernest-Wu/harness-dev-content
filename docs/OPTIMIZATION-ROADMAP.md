@@ -281,11 +281,11 @@ def check_multi_track_consistency():
 | **P1** | 2.1 Creative Gate 记录验证 | 2h | 4-5 个 exit-check | M6 | ✅ 已完成 |
 | **P1** | 3.1 feedback-analyzer.py | 2h | hooks/, feedback/ | M6 | ✅ 已完成 |
 | **P1** | 4.1 L0→L2→L4 追溯验证 | 2h | dev-planner, product-spec-builder | M6 | ✅ 已完成 |
-| **P2** | 1.2 exit-check 单元测试 | 6h | 新增 tests/ 目录 | M7 | ⬜ 待实施 |
-| **P2** | 2.2 Task Package 生成器 | 4h | 新增 package-task.py | M7 | ⬜ 待实施 |
-| **P2** | 2.3 进度仪表盘 | 4h | 新增 status-board.py | M7 | ⬜ 待实施 |
+| **P2** | 1.2 exit-check 单元测试 | 6h | 新增 tests/ 目录 | M7 | ✅ 已完成 |
+| **P2** | 2.2 Task Package 生成器 | 4h | 新增 package-task.py | M7 | ✅ 已完成 |
+| **P2** | 2.3 进度仪表盘 | 4h | 新增 status-board.py | M7 | ✅ 已完成 |
 | **P3** | 5.1 动态发现 | 2h | check-harness.py, router.py | M8 | ⬜ 待实施 |
-| **P3** | 3.2 Steering Loop 端到端测试 | 3h | 新增 test-steering-loop.sh | M8 | ⬜ 待实施 |
+| **P3** | 3.2 Steering Loop 端到端测试 | 3h | 新增 test-steering-loop.sh | M7 | ✅ 已完成 |
 | **P3** | 4.2 双轨冲突检测 | 1h | check-harness.py | M8 | ⬜ 待实施 |
 
 ---
